@@ -1,3 +1,4 @@
 node default {
-  include "users"
+  include "environment"
+  include "shorewall"
 }

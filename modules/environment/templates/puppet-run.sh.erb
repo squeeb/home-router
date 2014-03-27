@@ -1,0 +1,20 @@
+#!/bin/bash
+fd=0
+if [ -t $fd ]; then
+  GREEN=`tput setaf 2`
+  RED=`tput setaf 1`
+  CLEAR=`tput sgr0`
+  BOLD=`tput bold`
+fi
+
+sudo -E puppet apply \
+      --show_diff \
+      --parser future \
+      --environment=<%= @environment %> \
+      --modulepath=/opt/puppet/modules \
+      /opt/puppet/manifests/default.pp
+if [ $? -eq 0 ]; then
+  echo "[ ${GREEN} ok ${CLEAR} ]";
+else
+  echo "[ ${RED} failed ${CLEAR} ]";
+fi
