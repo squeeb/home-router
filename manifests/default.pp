@@ -1,4 +1,1 @@
-node default {
-  include "environment"
-  include "shorewall"
-}
+import '/opt/puppet/nodes/*.pp'
