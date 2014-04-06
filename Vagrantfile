@@ -7,12 +7,13 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "OTB-Debian70-v3"
   config.vm.box_url = "http://mirror.otbeach.com/vagrant_vms/OTB_Debian70-v3.box"
-  config.vm.synced_folder ".", "/opt/puppet"
+  config.vm.synced_folder ".", "/etc/puppet"
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path = "manifests"
     puppet.module_path = "modules"
-    puppet.working_directory = "/opt/puppet"
+    puppet.working_directory = "/etc/puppet"
     puppet.options = ['--environment production --parser future --show_diff']
+    puppet.hiera_config_path = "hiera.yaml"
   end
 
   config.vm.define "router1" do |c|

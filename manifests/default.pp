@@ -1,1 +1,2 @@
-import '/opt/puppet/nodes/*.pp'
+hiera_include("classes")
+import '/etc/puppet/nodes/*.pp'
