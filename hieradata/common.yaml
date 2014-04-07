@@ -2,3 +2,22 @@
 classes:
   - "environment"
   - "shorewall"
+
+shorewall::zones:
+  "fw":
+    type: "firewall"
+  "wan":
+    type: "ipv4"
+  "green":
+    type: "ipv4"
+
+shorewall::policies:
+  - policy: "ACCEPT"
+    source: "green"
+    dest: "wan"
+  - policy: "DROP"
+    source: "wan"
+    dest: "all"
+  - policy: "REJECT"
+    source: "all"
+    dest: "all"
