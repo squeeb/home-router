@@ -1,0 +1,5 @@
+#SOURCE         DEST            POLICY          LOG           BURST:LIMIT
+<% @policies.each do |policy| -%>
+<% policy.each do |rule,value| -%>
+<%= rule.fetch("source")
+<% end %>
