@@ -1,0 +1,4 @@
+deb <%= @location %> <%= @release %> <%= @repos %>
+<% if @include_src -%>
+deb-src <%= @location %> <%= @release %> <%= @repos %>
+<%- end -%>

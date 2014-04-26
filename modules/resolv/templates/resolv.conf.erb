@@ -1,0 +1,7 @@
+search <%= @search.join(" ") %>
+<%- @options.each do |option_string| -%>
+options <%= option_string %>
+<%- end -%>
+<%- @resolvers.each do |resolver| -%>
+nameserver <%= resolver %>
+<%- end -%>
