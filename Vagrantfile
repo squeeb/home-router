@@ -8,13 +8,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "OTB-Debian70-v3"
   config.vm.box_url = "http://mirror.otbeach.com/vagrant_vms/OTB_Debian70-v3.box"
   config.vm.synced_folder ".", "/etc/puppet"
-  config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "manifests"
-    puppet.module_path = "modules"
-    puppet.working_directory = "/etc/puppet"
-    puppet.options = ['--environment production --parser future --show_diff']
-    puppet.hiera_config_path = "hiera.yaml"
-  end
 
   config.vm.define "router1" do |c|
     c.vm.hostname = "router1.lan"
@@ -26,6 +19,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ip: "10.10.2.1",
       network: "255.255.255.252",
       virtualbox__intnet: "int2"
+
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "shorewall",
+      }
+    end
   end
 
   config.vm.define "router2" do |c|
@@ -38,6 +42,36 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ip: "10.10.2.2",
       network: "255.255.255.252",
       virtualbox__intnet: "int2"
+
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "shorewall",
+      }
+    end
+  end
+
+  config.vm.define "pvz01" do |c|
+    c.vm.hostname = "pvz01.swcnet.net"
+    c.vm.network "private_network",
+      ip: "10.10.1.3",
+      netmask: "255.255.255.252",
+      virtualbox__intnet: "int1"
+
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "proxmox",
+      }
+    end
   end
 
   # Create a public network, which generally matched to bridged network.  # Bridged networks make the machine appear as another physical device on

@@ -1,0 +1,32 @@
+---
+classes:
+  - "hosts"
+  - "proxmox"
+  - "proxmox::scripts"
+
+motd::note: >
+               Proxmox Server.
+               See http://wiki.247.otbeach.com/index.php/Systems#OpenVZ.2FProxmox_guides for help.
+
+apt::repos:
+  "pve-enterprise":
+    enabled: false
+    location: "https://enterprise.proxmox.com/debian"
+    release: "stable"
+    repos: "main"
+    include_src: false
+  "pve-no-subscription":
+    enabled: true
+    location: "http://download.proxmox.com/debian"
+    release: "wheezy"
+    repos: "pve-no-subscription"
+    include_src: false
+
+sysctl::options:
+  sunrpc.ve_allow_rpc: 1
+  fs.nfs.ve_allow_nfs: 1
+  kernel.ve_allow_kthreads: 1
+
+kernel::modules:
+  nfs:
+    ensure: "present"

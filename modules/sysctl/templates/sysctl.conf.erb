@@ -1,0 +1,5 @@
+<%- if @sysctl_options.any? -%>
+  <%- @sysctl_options.keys.sort.each do |key| -%>
+<%= key %> = <%= @sysctl_options[key] %>
+  <%- end -%>
+<%- end -%>
