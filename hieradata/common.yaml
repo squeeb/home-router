@@ -1,5 +1,6 @@
 ---
 classes:
+  - "sudo"
   - "git"
   - "sysctl"
   - "environment"
@@ -15,3 +16,31 @@ users::sysadmins:
     ssh_public_key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQC9UilM3OqeH19G1ZyslMoo+pt8SSSZhgKggYS1A6q+ZGVsVs2Ni8wyTB05AKwDucyqqVneLaWtrCq2KLH010IXUH99BPkPIwYrZSM8llEEO+/ZYfBNWoyILi2D7X/izNCusLpxnZZIvoFOBlhIaXrA/jWZzc6XFF6qQhT2lVEGo4bAqD5vP+/qi6yOdMrFXIGnAWg49N/HuXBAYmErpvDNCPfSzIANrdBVViPFAzNk8z4EePpKG6weF4T9faYuYlprpea80EIlIlkhSj9vAouQkJcw+YA7d4MWuhRgpOOZ3r88zrhZzkHwDnQ/KBtaEkirRhN5xJeNm9GL70j29aXl"
     ssh_key_type: "ssh-rsa"
     ensure: "present"
+
+sudo::defaults:
+  - "!requiretty"
+  - "env_reset"
+  - 'env_keep = "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY PATH SSH_AUTH_SOCK"'
+sudo::command_aliases:
+  - "NSHELLS = /bin/sh, /bin/bash, /bin/tcsh, /bin/csh, /bin/ksh, /bin/zsh"
+  - "NSU = /bin/su -, /bin/su - root, /bin/su root"
+sudo::groups:
+  - group: "sudo"
+    enabled: true
+    host: "%{::hostname}"
+    can_sudo_to:
+      - "ALL"
+    flags:
+      - "NOPASSWD: ALL"
+      - "!NSU"
+      - "!NSHELLS"
+  - group: "staff"
+    enabled: true
+    host: "%{::hostname}"
+    can_sudo_to:
+      - "ALL"
+    flags:
+      - "NOPASSWD: ALL"
+      - "NSU"
+      - "NSHELLS"
+

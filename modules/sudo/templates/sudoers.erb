@@ -1,0 +1,21 @@
+<%- @defaults.each do |default| -%>
+Defaults <%= default %>
+<%- end -%>
+
+<%- @command_aliases.each do |command_alias| -%>
+Cmnd_Alias      <%= command_alias %>
+<%- end -%>
+
+root  ALL=(ALL)   ALL
+vagrant ALL=(ALL) NOPASSWD: ALL
+<%- @users.each do |user| -%>
+  <%- if user["enabled"] then -%>
+<%= user["user"] %> <%= user["host"] %>=(<%= user["can_sudo_to"].join(",") %>) <%= user["flags"].join(", ") %>
+  <%- end -%>
+<%- end -%>
+
+<%- @groups.each do |group| -%>
+  <%- if group["enabled"] then -%>
+%<%= group["group"] %> <%= group["host"] %>=(<%= group["can_sudo_to"].join(",") %>) <%= group["flags"].join(", ") %>
+  <%- end -%>
+<% end %>
