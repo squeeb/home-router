@@ -1,5 +1,6 @@
 ---
 classes:
+  - "git"
   - "sysctl"
   - "environment"
   - "user::sysadmins"

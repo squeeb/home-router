@@ -1,0 +1,8 @@
+FACTER_datacenter=<%= @datacenter %>
+FACTER_role=<%= @role %>
+<%- if @environment == "sandbox" && @sandbox_number -%>
+FACTER_sandbox_number=<%= @sandbox_number %>
+<%- end -%>
+RAILS_ENV=<%= @environment %>
+RACK_ENV=<%= @environment %>
+FACTERLIB=/opt/malkovich/lib/

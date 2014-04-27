@@ -1,0 +1,26 @@
+#!/bin/bash
+if [ -t 1 ] ; then
+  red=$(tput setaf 1)
+  green=$(tput setaf 2)
+  yellow=$(tput setaf 3)
+  blue=$(tput setaf 6)
+  bold=$(tput bold)
+  reset=$(tput sgr0)
+  SUBDOMAIN=<%= @datacenter %>
+  ENVIRONMENT=<%= @environment %>
+  case $ENVIRONMENT in
+    "production")
+      ENVIRONMENT="\[$red\]${ENVIRONMENT}"
+      ;;
+    "qa")
+      ENVIRONMENT="\[$yellow\]${ENVIRONMENT}"
+      ;;
+    "sandbox")
+      ENVIRONMENT="\[$green\]${ENVIRONMENT}$(facter sandbox_number)"
+      ;;
+    default)
+      ENVIRONMENT=""
+      ;;
+  esac
+  export PS1="[\u@\h.\[$green$bold\]${SUBDOMAIN} \[$reset\](${ENVIRONMENT}\[$reset\])\[$reset\] \W]\\$ "
+fi
