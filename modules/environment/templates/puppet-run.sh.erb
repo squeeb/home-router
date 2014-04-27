@@ -7,7 +7,7 @@ if [ -t $fd ]; then
   BOLD=`tput bold`
 fi
 
-sudo -E puppet apply \
+sudo -E puppet apply $* \
       --show_diff \
       --parser future \
       --environment=<%= @environment %> \
