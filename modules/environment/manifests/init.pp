@@ -13,10 +13,7 @@ class environment {
   }
 
   file { "/usr/local/bin/puppet-up":
-    ensure  => $role ? {
-      "puppetmaster" => "present",
-      default        => "absent",
-    },
+    ensure  => "file",
     source  => "puppet:///modules/environment/puppet-up.sh",
     owner   => "root",
     group   => "root",
@@ -25,6 +22,11 @@ class environment {
   }
 
   file { "/usr/local/bin/puppet-run":
-    ensure => "absent",
+    ensure  => "file",
+    content => template("environment/puppet-run.sh.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "0755",
+    require => Class["git"],
   }
 }

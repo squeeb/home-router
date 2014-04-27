@@ -11,21 +11,13 @@ else
 fi
 
 function update() {
-  if [ $(id -un) == "malkovich" ]; then
     cd /etc/puppet && \
-          git pull -p $QUIET && \
-          git submodule update --init $QUIET
-  else
-    cd /etc/puppet && \
-          sudo -u malkovich git pull -p $GITQUIET && \
-          sudo -u malkovich git submodule update --init $GITQUIET
-  fi
-
-  if [ $? -eq 0 ]; then
-    echo "[ ${GREEN} ok ${CLEAR} ]";
-  else
-    echo "[ ${RED} failed ${CLEAR} ]" 1>&2;
-  fi
+          sudo git pull -p $GITQUIET && \
+    if [ $? -eq 0 ]; then
+      echo "[ ${GREEN} ok ${CLEAR} ]";
+    else
+      echo "[ ${RED} failed ${CLEAR} ]" 1>&2;
+    fi
 }
 
 update
