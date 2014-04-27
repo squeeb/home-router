@@ -5,7 +5,8 @@ define user::standard(
   $groups = [],
   $ssh_public_key,
   $ssh_key_type,
-  $custom_bashrc = false
+  $custom_bashrc = false,
+  $ensure = "present"
 ) {
 
 
