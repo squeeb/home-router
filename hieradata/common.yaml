@@ -1,5 +1,6 @@
 ---
 classes:
+  - "mountpoints"
   - "sudo"
   - "git"
   - "sysctl"

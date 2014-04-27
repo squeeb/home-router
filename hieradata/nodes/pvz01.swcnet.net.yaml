@@ -1,0 +1,7 @@
+---
+mountpoints:
+  "/data":
+    fstype: "xfs"
+    device: "/dev/pve-raid5/lvol01"
+    options: "allocsize=128m,nobarrier,inode64,logbufs=8,logbsize=256k"
+
