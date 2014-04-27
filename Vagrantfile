@@ -74,6 +74,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.define "download" do |c|
+    c.vm.hostname = "download.swcnet.net"
+    c.vm.network "private_network",
+      ip: "10.10.1.3",
+      netmask: "255.255.255.252",
+      virtualbox__intnet: "int1"
+
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "download",
+      }
+    end
+  end
+
   # Create a public network, which generally matched to bridged network.  # Bridged networks make the machine appear as another physical device on
   # your network.
   # config.vm.network "public_network"

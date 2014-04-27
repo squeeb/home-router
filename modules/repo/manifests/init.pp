@@ -1,7 +1,7 @@
 class repo {
   case $operatingsystem {
     'CentOS', 'RedHat' : {
-      $repos = hiera_hash("yumrepo::repos")
+      $repos = hiera_hash("yumrepo::repos",{})
 
       file { [
         "/etc/yum.repos.d/CentOS-Base.repo",
@@ -22,7 +22,7 @@ class repo {
       )
     }
     'Debian' : {
-      $repos = hiera_hash("apt::repos")
+      $repos = hiera_hash("apt::repos",{})
       create_resources("apt::repo", $repos)
     }
   }

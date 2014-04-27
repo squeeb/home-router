@@ -8,7 +8,7 @@ class mountpoints {
     group => "root",
   }
 
-  $mountpoints = hiera_hash("mountpoints")
+  $mountpoints = hiera_hash("mountpoints",{})
   create_resources("mountpoints::mount", $mountpoints, { require => File["/mnt/data"] })
 
 }
