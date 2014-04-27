@@ -28,6 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "shorewall",
+        "datacenter" => "home",
       }
     end
   end
@@ -51,6 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "shorewall",
+        "datacenter" => "home",
       }
     end
   end
@@ -70,6 +72,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "proxmox",
+        "datacenter" => "home",
       }
     end
   end
@@ -89,6 +92,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "download",
+        "datacenter" => "home",
       }
     end
   end

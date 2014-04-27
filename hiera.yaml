@@ -7,6 +7,7 @@
 
 :hierarchy:
   - "nodes/%{::fqdn}"
+  - "datacenter/%{::datacenter}"
   - "roles/%{::role}"
   - "roles/common"
   - "common"
