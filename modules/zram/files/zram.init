@@ -68,7 +68,7 @@ stop() {
 
 status() {
   grep zram /proc/swaps >/dev/null
-  echo $?
+  RETVAL=$?
 }
 
 case "$1" in
