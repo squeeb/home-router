@@ -24,9 +24,16 @@ class transmission {
     mode => "0770",
   }
 
+  file { "/etc/default/transmission-daemon":
+    ensure => "absent",
+    require => Package["transmission-daemon"],
+  }
+
   service { "transmission-daemon":
     ensure => "running",
     enable => true,
     subscribe => File["/etc/transmission-daemon/settings.json"],
+    require => File["/etc/default/transmission-daemon"],
   }
+
 }

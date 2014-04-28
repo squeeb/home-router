@@ -18,4 +18,5 @@ resolv::search:
 transmission:
   download_dir: "/data/torrents"
   rpc-whitelist-enabled: false
+  config_dir: "/var/lib/transmission-daemon/info"
 
