@@ -23,4 +23,10 @@ class transmission {
     group => "staff",
     mode => "0770",
   }
+
+  service { "transmission-daemon":
+    ensure => "running",
+    enable => true,
+    subscribe => File["/etc/transmission-daemon/settings.json"],
+  }
 }
