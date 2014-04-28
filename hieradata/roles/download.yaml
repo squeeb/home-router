@@ -1,4 +1,6 @@
 ---
+classes:
+  - "transmission"
 resolv::options:
   - "timeout:1"
   - "attempts:1"
@@ -12,3 +14,6 @@ resolv::search:
   - "swcnet.net"
   - "wlan.swcnet.net"
   - "mgmt.swcnet.net"
+
+transmission:
+  download_dir: "/data/torrents"
