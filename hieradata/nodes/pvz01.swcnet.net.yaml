@@ -1,4 +1,7 @@
 ---
+classes:
+  - "zram"
+
 mountpoints:
   "/data":
     fstype: "xfs"
