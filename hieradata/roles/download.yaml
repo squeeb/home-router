@@ -17,3 +17,5 @@ resolv::search:
 
 transmission:
   download_dir: "/data/torrents"
+  rpc-whitelist-enabled: false
+

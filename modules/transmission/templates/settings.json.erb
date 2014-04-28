@@ -51,7 +51,7 @@
     "rpc-url": "/transmission/",
     "rpc-username": "transmission",
     "rpc-whitelist": "127.0.0.1",
-    "rpc-whitelist-enabled": true,
+    "rpc-whitelist-enabled": <%= @config.fetch("rpc-whitelist-enabled", "true") %>,
     "scrape-paused-torrents-enabled": true,
     "script-torrent-done-enabled": false,
     "script-torrent-done-filename": "",
