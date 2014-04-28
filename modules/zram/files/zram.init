@@ -25,7 +25,7 @@ start() {
     mem_total=$((mem_total_kb * 1024))
 
     # load dependency modules
-    [[ $(lsmod | grep zram >/dev/null) ]] && modprobe zram num_devices=$num_cpus
+    [[ ! $(lsmod | grep zram >/dev/null) ]] && modprobe zram num_devices=$num_cpus
 
     # initialize the devices
     for i in $(seq 0 $decr_num_cpus); do
