@@ -66,6 +66,11 @@ stop() {
   rmmod zram
 }
 
+status() {
+  grep zram /proc/swaps >/dev/null
+  echo $?
+}
+
 case "$1" in
   start)
     start
@@ -78,8 +83,11 @@ case "$1" in
     sleep 3
     start
     ;;
+  status)
+    status
+    ;;
   *)
-    echo "Usage: $0 {start|stop|restart}"
+    echo "Usage: $0 {start|stop|restart|status}"
     RETVAL=1
 esac
 exit $RETVAL
