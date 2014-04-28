@@ -12,6 +12,8 @@
 ### END INIT INFO
 
 start() {
+  grep zram /proc/swaps > /dev/null
+  if [ ! $? -eq 0 ]; then
     # get the number of CPUs
     num_cpus=$(grep -c processor /proc/cpuinfo)
     # if something goes wrong, assume we have 1
@@ -25,59 +27,59 @@ start() {
     mem_total=$((mem_total_kb * 1024))
 
     # load dependency modules
-    [[ ! $(lsmod | grep zram >/dev/null) ]] && modprobe zram num_devices=$num_cpus
+    modprobe zram num_devices=$num_cpus
 
     # initialize the devices
+
     for i in $(seq 0 $decr_num_cpus); do
-      if [ ! -e /sys/block/zram$i/disksize ]; then
-        echo $((mem_total / num_cpus)) > /sys/block/zram$i/disksize
-      fi
+      echo $((mem_total / num_cpus)) > /sys/block/zram$i/disksize
     done
 
     # Creating swap filesystems
     for i in $(seq 0 $decr_num_cpus); do
-      [[ ! $(grep zram$i /proc/swaps >/dev/null) ]] && mkswap /dev/zram$i
+      mkswap /dev/zram$i
     done
 
     # Switch the swaps on
     for i in $(seq 0 $decr_num_cpus); do
-      [[ ! $(grep zram$i /proc/swaps >/dev/null) ]] && swapon -p 100 /dev/zram$i
+      swapon -p 100 /dev/zram$i
     done
+  fi
 }
 
 stop() {
-    # get the number of CPUs
-    num_cpus=$(grep -c processor /proc/cpuinfo)
+  # get the number of CPUs
+  num_cpus=$(grep -c processor /proc/cpuinfo)
 
-    # set decremented number of CPUs
-    decr_num_cpus=$((num_cpus - 1))
+  # set decremented number of CPUs
+  decr_num_cpus=$((num_cpus - 1))
 
-    # Switching off swap
-    for i in $(seq 0 $decr_num_cpus); do
+  # Switching off swap
+  for i in $(seq 0 $decr_num_cpus); do
     if [ "$(grep /dev/zram$i /proc/swaps)" != "" ]; then
-    swapoff /dev/zram$i
-    sleep 1
+      swapoff /dev/zram$i
+      sleep 1
     fi
-    done
+  done
 
-    sleep 1
-    rmmod zram
+  sleep 1
+  rmmod zram
 }
 
 case "$1" in
-    start)
-        start
-        ;;
-    stop)
-        stop
-        ;;
-    restart)
-        stop
-        sleep 3
-        start
-        ;;
-    *)
-        echo "Usage: $0 {start|stop|restart}"
-        RETVAL=1
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop
+    sleep 3
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    RETVAL=1
 esac
 exit $RETVAL
