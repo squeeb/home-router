@@ -19,14 +19,22 @@ class transmission {
     "/home/debian-transmission",
     "/home/debian-transmission/.config",
     "/home/debian-transmission/.config/transmission-daemon",
-    $config["download_dir"],
-    "${config['download_dir']}/incomplete"
   ]:
     ensure => "directory",
     owner => "debian-transmission",
     group => "staff",
     mode => "0570",
     require => Package["transmission-daemon"],
+  }
+
+  file {[
+    $config["download_dir"],
+    "${config['download_dir']}/incomplete"
+  ]:
+    ensure => "directory",
+    owner => "debian-transmission",
+    group => "staff",
+    mode => "6775",
   }
 
   file { "/etc/default/transmission-daemon":
