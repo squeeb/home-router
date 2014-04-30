@@ -35,6 +35,7 @@ class transmission {
     owner => "debian-transmission",
     group => "staff",
     mode => "6775",
+    require => Package["transmission-daemon"],
   }
 
   file { "/etc/default/transmission-daemon":

@@ -1,6 +1,17 @@
 ---
 classes:
   - "transmission"
+
+apt::repos:
+  "jcfp":
+    enabled: true
+    location: "http://ppa.launchpad.net/jcfp/ppa/ubuntu"
+    release: "%{::lsbdistcodename}"
+    repos: "main"
+    include_src: false
+    key: "0x98703123E0F52B2BE16D586EF13930B14BB9F05F"
+    key_server: "hkp://keyserver.ubuntu.com:11371"
+
 resolv::options:
   - "timeout:1"
   - "attempts:1"
@@ -19,4 +30,3 @@ transmission:
   download_dir: "/data/torrents"
   rpc-whitelist-enabled: false
   config_dir: "/var/lib/transmission-daemon/info"
-

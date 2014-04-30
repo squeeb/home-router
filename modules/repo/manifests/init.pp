@@ -21,7 +21,7 @@ class repo {
         ]}
       )
     }
-    'Debian' : {
+    /^(Debian|Ubuntu)$/: {
       $repos = hiera_hash("apt::repos",{})
       create_resources("apt::repo", $repos)
     }
