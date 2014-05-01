@@ -1,0 +1,14 @@
+---
+classes:
+  - "samba"
+
+samba::workgroup: "SWC"
+samba::server_string: "%{::hostname}"
+samba::shares:
+  store:
+    comment: "Movies, Music, Etc.."
+    path: "/data"
+    guest_ok: "no"
+    browseable: "yes"
+    create_mask: "0664"
+    directory_mask: "0775"

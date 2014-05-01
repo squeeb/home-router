@@ -12,19 +12,6 @@ apt::repos:
     key: "0x98703123E0F52B2BE16D586EF13930B14BB9F05F"
     key_server: "hkp://keyserver.ubuntu.com:11371"
 
-resolv::options:
-  - "timeout:1"
-  - "attempts:1"
-  - "rotate"
-  - "single-request"
-  - "single-request-reopen"
-resolv::resolvers:
-  - "10.2.0.254"
-  - "10.2.3.254"
-resolv::search:
-  - "swcnet.net"
-  - "wlan.swcnet.net"
-  - "mgmt.swcnet.net"
 
 transmission:
   download_dir: "/data/torrents"
