@@ -1,22 +1,15 @@
 define user::system(
   $uid,
-  $gid,
-  $gid_name,
-  $server_roles,
+  $gid = $name,
   $comment,
-  $enabled,
-  $homedir = undef,
+  $groups = [$gid],
+  $ensure = "present"
 ) {
-
-  if $enabled and $role in $server_roles {
-    $ensure = "present"
-  } else {
-    $ensure = "absent"
-  }
 
   user { $name:
     uid => $uid,
-    gid => $gid_name,
+    gid => $gid,
+    groups => $groups,
     comment => $comment,
     shell => "/bin/bash",
     managehome => $homedir ? {
@@ -30,9 +23,8 @@ define user::system(
     ensure => $ensure,
   }
 
-  group { $gid_name:
-    name => $gid_name,
-    gid => $gid,
+  group { $gid:
+    name => $gid,
     ensure => $ensure,
   }
 
@@ -40,8 +32,8 @@ define user::system(
   # create the user until the group already exists, this sorts out the stupid
   # dependency issue
   if $ensure == "present" {
-    Group[$gid_name] -> User[$name]
+    Group[$gid] -> User[$name]
   } else {
-    User[$name] -> Group[$gid_name]
+    User[$name] -> Group[$gid]
   }
 }

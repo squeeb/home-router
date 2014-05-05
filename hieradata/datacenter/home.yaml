@@ -6,8 +6,7 @@ resolv::options:
   - "single-request"
   - "single-request-reopen"
 resolv::resolvers:
-  - "10.2.0.254"
-  - "10.2.3.254"
+  - "8.8.8.8"
 resolv::search:
   - "swcnet.net"
   - "wlan.swcnet.net"

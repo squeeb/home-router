@@ -1,8 +1,4 @@
 class samba {
-
-  $workgroup = hiera("samba::workgroup")
-  $shares = hiera_hash("samba::shares")
-
   package { "samba":
     ensure => "latest",
   }
@@ -13,9 +9,6 @@ class samba {
     require => Package["samba"],
   }
 
-  class { "samba::config":
-    workgroup => $workgroup,
-    shares => $shares,
-  }
+  class { "samba::config": }
 
 }

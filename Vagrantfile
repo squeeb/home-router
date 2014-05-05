@@ -91,7 +91,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "manifests"
       puppet.module_path = "modules"
       puppet.working_directory = "/etc/puppet"
-      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.options = ['--debug --environment production --parser future --show_diff']
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "download",

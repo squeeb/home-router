@@ -1,6 +1,7 @@
 ---
 classes:
   - "transmission"
+  - "sabnzb"
 
 apt::repos:
   "jcfp":
