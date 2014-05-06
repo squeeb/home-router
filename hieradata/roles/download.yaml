@@ -3,6 +3,7 @@ classes:
   - "transmission"
   - "sabnzb"
   - "sickbeard"
+  - "unrar"
 
 apt::repos:
   "jcfp":
