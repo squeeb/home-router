@@ -1,8 +1,8 @@
 define user::system(
   $uid,
-  $gid = $name,
+  $gid,
   $comment,
-  $groups = [$gid],
+  $groups = [$name],
   $ensure = "present"
 ) {
 
@@ -23,8 +23,8 @@ define user::system(
     ensure => $ensure,
   }
 
-  group { $gid:
-    name => $gid,
+  group { $name:
+    gid => $gid,
     ensure => $ensure,
   }
 
@@ -32,8 +32,8 @@ define user::system(
   # create the user until the group already exists, this sorts out the stupid
   # dependency issue
   if $ensure == "present" {
-    Group[$gid] -> User[$name]
+    Group[$name] -> User[$name]
   } else {
-    User[$name] -> Group[$gid]
+    User[$name] -> Group[$name]
   }
 }

@@ -24,6 +24,7 @@ users::sysadmins:
 users::system_users:
   download:
     uid: 204
+    gid: 2004
     groups:
       - "download"
     comment: "Downloader"

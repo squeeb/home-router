@@ -70,6 +70,7 @@ class transmission {
   user::system { "debian-transmission":
     comment => "Debian Transmission Daemon",
     uid => 1006,
+    gid => 2006,
     groups => [
       "debian-transmission",
       "download"
