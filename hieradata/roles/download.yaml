@@ -22,4 +22,6 @@ transmission:
   config_dir: "/var/lib/transmission-daemon/info"
 
 sabnzb::config::run_as_user: "sabnzb"
-sabnzb::config::https_port: 9090
+sabnzb::config::http_port: 9090
+
+sickbeard::config::http_port: 9092

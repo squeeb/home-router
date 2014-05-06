@@ -1,6 +1,7 @@
 class sabnzb {
   $run_as_user = hiera("sabnzb::config::run_as_user")
-  $https_port = hiera("sabnzb::config::https_port")
+  $http_port = hiera("sabnzb::config::http_port")
+  $sickbeard_port = hiera("sickbeard::config::http_port")
 
   package {[
     "sabnzbdplus",
@@ -46,5 +47,21 @@ class sabnzb {
       Package["sabnzbdplus"],
       File["/etc/sabnzb"]
     ],
+  }
+
+  file { "/etc/sabnzb/autoProcessTV":
+    ensure => "directory",
+    owner => "sabnzb",
+    group => "download",
+    mode => "0755",
+    require => File["/etc/sabnzb"],
+  }
+
+  file { "/etc/sabnzb/autoProcessTV/autoProcessTV.cfg":
+    ensure => "file",
+    owner => "sabnzb",
+    group => "download",
+    mode => "0644",
+    content => template("sabnzb/autoProcessTV.cfg.erb"),
   }
 }

@@ -1,7 +1,7 @@
 class sickbeard {
 
   $sickbeard_root = "/usr/share/sickbeard"
-  $sabnzb_port = hiera("sabnzb::config::https_port")
+  $sickbeard_port = hiera("sickbeard::config::http_port")
   $download_dir = "/data/TV"
 
   user::system { "sickbeard":
@@ -61,14 +61,6 @@ class sickbeard {
     ],
   }
 
-  file { "/usr/share/sickbeard/autoProcessTV/autoProcessTV.cfg":
-    ensure => "file",
-    owner => "sickbeard",
-    group => "download",
-    mode => "0644",
-    content => template("sickbeard/autoProcessTV.cfg.erb"),
-    require => File["/etc/sickbeard"],
-  }
 
   service { "sickbeard":
     ensure => "running",
