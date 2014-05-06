@@ -1,6 +1,7 @@
 ---
 classes:
   - "samba"
+  - "unrar"
 
 samba::config::workgroup: "SWC"
 samba::config::server_string: "%{::hostname}"

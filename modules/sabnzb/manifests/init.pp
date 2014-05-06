@@ -8,6 +8,7 @@ class sabnzb {
     "sabnzbdplus-theme-plush"
   ]:
     ensure => "latest",
+    require => Package["unrar-free"],
   }
 
   user::system { "sabnzb":
