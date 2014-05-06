@@ -12,7 +12,7 @@ class sabnzb {
 
   user::system { "sabnzb":
     comment => "Debian Transmission Daemon",
-    uid => 107,
+    uid => 1007,
     groups => [
       "sabnzb",
       "download"
