@@ -1,6 +1,7 @@
 class sickbeard {
 
   $sickbeard_root = "/usr/share/sickbeard"
+  $download_dir = "/data/TV"
 
   user::system { "sickbeard":
     comment => "Sick Beard",
@@ -63,5 +64,13 @@ class sickbeard {
       File["/etc/default/sickbeard"],
       Exec["install-sickbeard-init"]
     ],
+  }
+
+  file { $download_dir:
+    ensure => "directory",
+    owner => "sickbeard",
+    group => "download",
+    mode => "6775",
+    require => User::System["sickbeard","download"],
   }
 }
