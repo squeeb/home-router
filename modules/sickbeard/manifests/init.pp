@@ -53,8 +53,21 @@ class sickbeard {
   file { "/etc/sickbeard":
     ensure => "directory",
     owner => "sickbeard",
-    group => "staff",
-    mode => "6770",
+    group => "download",
+    mode => "6775",
+    require => [
+      Exec["install-sickbeard"],
+      User::System["sickbeard"],
+    ],
+  }
+
+  file { "/usr/share/sickbeard/autoProcessTV/autoProcessTV.cfg":
+    ensure => "file",
+    owner => "sickbeard",
+    group => "download",
+    mode => "0644",
+    content => template("sickbeard/autoProcessTV.cfg.erb"),
+    require => File["/etc/sickbeard"],
   }
 
   service { "sickbeard":
