@@ -1,6 +1,7 @@
 class sickbeard {
 
   $sickbeard_root = "/usr/share/sickbeard"
+  $sabnzb_port = hiera("sabnzb::config::https_port")
   $download_dir = "/data/TV"
 
   user::system { "sickbeard":
