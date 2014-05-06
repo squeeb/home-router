@@ -21,7 +21,7 @@ class sickbeard {
     ensure => "directory",
     owner => "sickbeard",
     group => "staff",
-    mode => "6770",
+    mode => "6775",
     require => User::System["sickbeard"],
   }
 
@@ -53,7 +53,7 @@ class sickbeard {
     ensure => "directory",
     owner => "sickbeard",
     group => "staff",
-    mode => "6775",
+    mode => "6770",
   }
 
   service { "sickbeard":
