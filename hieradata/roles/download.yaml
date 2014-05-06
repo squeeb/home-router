@@ -18,3 +18,6 @@ transmission:
   download_dir: "/data/torrents"
   rpc-whitelist-enabled: false
   config_dir: "/var/lib/transmission-daemon/info"
+
+sabnzb::config::run_as_user: "sabnzb"
+sabnzb::config::https_port: 9090

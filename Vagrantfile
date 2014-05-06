@@ -85,13 +85,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       netmask: "255.255.255.252",
       virtualbox__intnet: "int1"
     c.vm.network "forwarded_port", guest: 9091, host: 9091
+    c.vm.network "forwarded_port", guest: 9090, host: 9090
 
     c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
     c.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "manifests"
       puppet.module_path = "modules"
       puppet.working_directory = "/etc/puppet"
-      puppet.options = ['--debug --environment production --parser future --show_diff']
+      puppet.options = ['--environment production --parser future --show_diff']
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "download",
