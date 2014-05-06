@@ -53,7 +53,7 @@ class sickbeard {
     ensure => "directory",
     owner => "sickbeard",
     group => "staff",
-    mode => "6770",
+    mode => "6775",
   }
 
   service { "sickbeard":
