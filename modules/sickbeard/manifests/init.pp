@@ -79,4 +79,12 @@ class sickbeard {
     mode => "6775",
     require => User::System["sickbeard","download"],
   }
+
+  file { "/usr/share/sickbeard/autoProcessTV/autoProcessTV.cfg":
+    ensure => "file",
+    owner => "sickbeard",
+    group => "download",
+    mode => "0644",
+    content => template("sickbeard/autoProcessTV.cfg.erb"),
+  }
 }

@@ -49,19 +49,4 @@ class sabnzb {
     ],
   }
 
-  file { "/etc/sabnzb/autoProcessTV":
-    ensure => "directory",
-    owner => "sabnzb",
-    group => "download",
-    mode => "0755",
-    require => File["/etc/sabnzb"],
-  }
-
-  file { "/etc/sabnzb/autoProcessTV/autoProcessTV.cfg":
-    ensure => "file",
-    owner => "sabnzb",
-    group => "download",
-    mode => "0644",
-    content => template("sabnzb/autoProcessTV.cfg.erb"),
-  }
 }
