@@ -1,5 +1,5 @@
 class unrar {
-  package { "unrar-free":
+  package { "unrar":
     ensure => "latest",
   }
 }

@@ -14,7 +14,12 @@ apt::repos:
     include_src: false
     key: "0x98703123E0F52B2BE16D586EF13930B14BB9F05F"
     key_server: "hkp://keyserver.ubuntu.com:11371"
-
+  "multiverse":
+    enabled: true
+    location: "http://archive.ubuntu.com/ubuntu"
+    release: "%{::lsbdistcodename}"
+    repos: "multiverse"
+    include_src: false
 
 transmission:
   download_dir: "/data/torrents"
