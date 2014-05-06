@@ -34,7 +34,7 @@ class sabnzb {
   file { "/etc/sabnzb":
     ensure => "directory",
     owner => "sabnzb",
-    group => "staff",
+    group => "download",
     mode => "6775",
     require => User::System["sabnzb"],
   }
