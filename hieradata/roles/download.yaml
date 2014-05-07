@@ -4,6 +4,7 @@ classes:
   - "sabnzb"
   - "sickbeard"
   - "unrar"
+  - "spotweb"
 
 apt::repos:
   "jcfp":
