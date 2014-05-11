@@ -5,6 +5,7 @@ classes:
   - "sickbeard"
   - "unrar"
   - "spotweb"
+  - "apache2"
 
 apt::repos:
   "jcfp":
