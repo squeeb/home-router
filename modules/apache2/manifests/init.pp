@@ -6,6 +6,13 @@ class apache2 {
   service { "apache2":
     ensure => "running",
     enable => true,
-    require => Package["apache2"],
+    require => [
+      Exec["a2enmod rewrite"],
+      Package["apache2"]
+    ],
+  }
+
+  exec { "a2enmod rewrite":
+    creates => "/etc/apache2/mods-enabled/rewrite.load",
   }
 }

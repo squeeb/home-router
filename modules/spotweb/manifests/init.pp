@@ -78,8 +78,8 @@ class spotweb {
   cron { "spotweb-retrieve":
     command => "cd /usr/share/spotweb && /usr/bin/php retrieve.php",
     user    => "www-data",
-    hour    => 2,
-    minute  => 0,
+    hour    => "*/2",
+    minute  => 32,
     require => File["/usr/share/spotweb/dbsettings.inc.php"],
   }
 }
