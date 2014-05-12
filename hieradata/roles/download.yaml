@@ -6,6 +6,10 @@ classes:
   - "unrar"
   - "spotweb"
   - "apache2"
+  - "mysql::server"
+  - "php5"
+  - "php5::apache"
+  - "php5::mysql"
 
 apt::repos:
   "jcfp":
@@ -32,3 +36,7 @@ sabnzb::config::run_as_user: "sabnzb"
 sabnzb::config::http_port: 9090
 
 sickbeard::config::http_port: 9092
+spotweb::config::spotweb_db_host: "localhost"
+spotweb::config::spotweb_db_name: "spotweb"
+spotweb::config::spotweb_db_user: "spotweb"
+spotweb::config::spotweb_db_pass: "spotweb"
