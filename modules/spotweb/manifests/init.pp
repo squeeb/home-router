@@ -76,7 +76,7 @@ class spotweb {
   }
 
   cron { "spotweb-retrieve":
-    command => "cd /usr/share/spotweb && /usr/bin/php retrieve.php",
+    command => "cd /usr/share/spotweb && /usr/bin/php retrieve.php | mail -s spotweb-retrieve squeeb@radioglitch.com",
     user    => "www-data",
     hour    => "*/2",
     minute  => 32,
