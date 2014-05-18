@@ -13,6 +13,7 @@ samba::config::shares:
     browseable: "yes"
     create_mask: "0664"
     directory_mask: "0775"
+    writeable: "yes"
 
 apt::repos:
   "multiverse":
