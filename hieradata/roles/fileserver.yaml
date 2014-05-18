@@ -13,3 +13,11 @@ samba::config::shares:
     browseable: "yes"
     create_mask: "0664"
     directory_mask: "0775"
+
+apt::repos:
+  "multiverse":
+    enabled: true
+    location: "http://archive.ubuntu.com/ubuntu"
+    release: "%{::lsbdistcodename}"
+    repos: "multiverse"
+    include_src: false
