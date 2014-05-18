@@ -3,6 +3,7 @@ class spotweb {
   $spotweb_db_name = hiera("spotweb::config::spotweb_db_name")
   $spotweb_db_user = hiera("spotweb::config::spotweb_db_user")
   $spotweb_db_pass = hiera("spotweb::config::spotweb_db_pass")
+  $sysadmin_email_address = hiera("sysadmin::email_address")
 
   file { "/usr/share/spotweb":
     ensure => "directory",
@@ -76,9 +77,9 @@ class spotweb {
   }
 
   cron { "spotweb-retrieve":
-    command => "cd /usr/share/spotweb && /usr/bin/php retrieve.php | mail -s spotweb-retrieve squeeb@radioglitch.com",
+    command => "cd /usr/share/spotweb && /usr/bin/php retrieve.php | mail -s spotweb-retrieve ${sysadmin_email_address}",
     user    => "www-data",
-    hour    => "*/2",
+    hour    => "*/12",
     minute  => 32,
     require => File["/usr/share/spotweb/dbsettings.inc.php"],
   }
