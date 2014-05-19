@@ -12,7 +12,7 @@ fi
 
 function update() {
     cd /etc/puppet && \
-          sudo git pull -p $GITQUIET && \
+          sudo git pull -p $GITQUIET $QUIET && \
     if [ $? -eq 0 ]; then
       echo "[ ${GREEN} ok ${CLEAR} ]";
     else
