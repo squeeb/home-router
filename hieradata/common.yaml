@@ -5,6 +5,7 @@ classes:
   - "git"
   - "sysctl"
   - "environment"
+  - "emailforward"
   - "user::systems"
   - "user::sysadmins"
   - "puppet"

@@ -1,2 +1,4 @@
 .vagrant
 etckeeper*
+environments
+/puppet.conf
