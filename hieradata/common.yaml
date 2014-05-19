@@ -7,6 +7,7 @@ classes:
   - "environment"
   - "user::systems"
   - "user::sysadmins"
+  - "puppet"
   - "iptraf"
 
 users::sysadmins:
@@ -58,3 +59,13 @@ sudo::groups:
       - "NSHELLS"
 
 sysadmin::email_address: "squeeb@radioglitch.com"
+
+apt::repos:
+  "puppetlabs":
+    enabled: true
+    location: "http://apt.puppetlabs.com"
+    release: "%{::lsbdistcodename}"
+    repos: "main dependencies"
+    include_src: false
+    key: "4BD6EC30"
+    key_source: "https://apt.puppetlabs.com/pubkey.gpg"
