@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "OTB-Debian70-v3"
   config.vm.box_url = "http://mirror.otbeach.com/vagrant_vms/OTB_Debian70-v3.box"
-  config.vm.synced_folder ".", "/etc/puppet"
+  config.vm.synced_folder ".", "/etc/puppet", type: "rsync"
 
   config.vm.define "router1" do |c|
     c.vm.hostname = "router1.lan"
