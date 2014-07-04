@@ -36,8 +36,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "router2" do |c|
     c.vm.hostname = "router2.lan"
     c.vm.network "private_network",
-      ip: "10.10.1.2",
-      netmask: "255.255.255.252",
+      ip: "10.10.1.1",
+      netmask: "255.255.255.0",
       virtualbox__intnet: "int1"
     c.vm.network "private_network",
       ip: "10.10.2.2",
@@ -60,8 +60,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "pvz01" do |c|
     c.vm.hostname = "pvz01.swcnet.net"
     c.vm.network "private_network",
-      ip: "10.10.1.3",
-      netmask: "255.255.255.252",
+      ip: "10.10.1.2",
+      netmask: "255.255.255.0",
       virtualbox__intnet: "int1"
 
     c.vm.provision "puppet" do |puppet|
@@ -82,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.hostname = "download.swcnet.net"
     c.vm.network "private_network",
       ip: "10.10.1.3",
-      netmask: "255.255.255.252",
+      netmask: "255.255.255.0",
       virtualbox__intnet: "int1"
     c.vm.network "forwarded_port", guest: 80, host: 8000
     c.vm.network "forwarded_port", guest: 9092, host: 9092
@@ -108,7 +108,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.hostname = "fileserver.swcnet.net"
     c.vm.network "private_network",
       ip: "10.10.1.4",
-      netmask: "255.255.255.252",
+      netmask: "255.255.255.0",
       virtualbox__intnet: "int1"
     c.vm.network "forwarded_port", guest: 139, host: 139
     c.vm.network "forwarded_port", guest: 548, host: 548
@@ -122,6 +122,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "hiera.yaml"
       puppet.facter = {
         "role" => "fileserver",
+        "datacenter" => "home",
+      }
+    end
+  end
+
+  config.vm.define "pbx" do |c|
+    c.vm.box = "Ubuntu-1204-swc"
+    c.vm.hostname = "pbx.swcnet.net"
+    c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "pbx",
         "datacenter" => "home",
       }
     end
