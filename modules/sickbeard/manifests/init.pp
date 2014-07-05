@@ -14,10 +14,6 @@ class sickbeard {
     ],
   }
 
-  package { "python-cheetah":
-    ensure => "latest",
-  }
-
   file { $sickbeard_root:
     ensure => "directory",
     owner => "sickbeard",
@@ -86,5 +82,6 @@ class sickbeard {
     group => "download",
     mode => "0644",
     content => template("sickbeard/autoProcessTV.cfg.erb"),
+    require => Exec["install-sickbeard-init"],
   }
 }

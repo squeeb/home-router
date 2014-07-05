@@ -85,6 +85,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       netmask: "255.255.255.0",
       virtualbox__intnet: "int1"
     c.vm.network "forwarded_port", guest: 80, host: 8000
+    c.vm.network "forwarded_port", guest: 5050, host: 5050
     c.vm.network "forwarded_port", guest: 9092, host: 9092
     c.vm.network "forwarded_port", guest: 9091, host: 9091
     c.vm.network "forwarded_port", guest: 9090, host: 9090
