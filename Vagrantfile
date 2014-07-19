@@ -144,6 +144,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
     end
   end
+
+  config.vm.define "nms" do |c|
+    c.vm.box = "Ubuntu-1204-swc"
+    c.vm.hostname = "nms.swcnet.net"
+    c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "nms",
+        "datacenter" => "home",
+      }
+    end
+  end
   # Create a public network, which generally matched to bridged network.  # Bridged networks make the machine appear as another physical device on
   # your network.
   # config.vm.network "public_network"
