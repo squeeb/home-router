@@ -7,13 +7,18 @@ shorewall::zones:
     type: "firewall"
   "wan":
     type: "ipv4"
-  "green":
+  "lan":
+    type: "ipv4"
+  "guest":
     type: "ipv4"
 
 shorewall::policies:
   - policy: "ACCEPT"
-    source: "green"
-    dest: "wan"
+    source: "lan"
+    dest: "all"
+  - policy: "DROP"
+    source: "guest"
+    dest: "all"
   - policy: "DROP"
     source: "wan"
     dest: "all"
