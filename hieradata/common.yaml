@@ -30,7 +30,9 @@ users::system_users:
     groups:
       - "download"
     comment: "Downloader"
-    ensure: "present"
+    server_roles:
+      - "download"
+      - "fileserver"
 
 sudo::defaults:
   - "!requiretty"

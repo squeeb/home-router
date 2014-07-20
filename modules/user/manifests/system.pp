@@ -3,15 +3,23 @@ define user::system(
   $gid,
   $comment,
   $groups = [$name],
-  $ensure = "present"
+  $server_roles = "all",
+  $shell = "/bin/bash",
+  $ensure = "present",
 ) {
+
+  if $server_roles == "all" or $role in $server_roles {
+    $loginshell = $shell
+  } else {
+    $loginshell = "/usr/sbin/nologin"
+  }
 
   user { $name:
     uid => $uid,
     gid => $gid,
     groups => $groups,
     comment => $comment,
-    shell => "/bin/bash",
+    shell => $loginshell,
     managehome => $homedir ? {
       undef => false,
       default => true,
