@@ -10,6 +10,7 @@ classes:
   - "user::sysadmins"
   - "puppet"
   - "iptraf"
+  - "vim"
 
 users::sysadmins:
   squeeb:
