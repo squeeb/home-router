@@ -70,11 +70,3 @@ apt::repos:
     include_src: false
     key: "4BD6EC30"
     key_source: "https://apt.puppetlabs.com/pubkey.gpg"
-  "webupd8team":
-    enabled: true
-    location: "http://ppa.launchpad.net/webupd8team/java/ubuntu"
-    release: "%{::lsbdistcodename}"
-    repos: "main"
-    include_src: false
-    key: "EEA14886"
-    key_server: "keyserver.ubuntu.com"

@@ -1,3 +1,13 @@
 ---
 classes:
   - "java"
+
+apt::repos:
+  "webupd8team":
+    enabled: true
+    location: "http://ppa.launchpad.net/webupd8team/java/ubuntu"
+    release: "%{::lsbdistcodename}"
+    repos: "main"
+    include_src: false
+    key: "EEA14886"
+    key_server: "keyserver.ubuntu.com"
