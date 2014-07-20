@@ -1,7 +1,7 @@
 class java {
 
   $java_package_name = $operatingsystem ? {
-    /^(Ubuntu|Debian)$/ => "openjdk-7-jre",
+    /^(Ubuntu|Debian)$/ => "oracle-java7-set-default",
     "CentOS"            => "java",
   }
 
