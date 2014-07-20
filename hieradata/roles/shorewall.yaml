@@ -25,3 +25,6 @@ shorewall::policies:
   - policy: "REJECT"
     source: "all"
     dest: "all"
+  - policy: "ACCEPT"
+    source: "fw"
+    dest: "all"
