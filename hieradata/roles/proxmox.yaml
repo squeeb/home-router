@@ -1,5 +1,6 @@
 ---
 classes:
+  - "zram"
   - "hosts"
   - "proxmox"
   - "proxmox::scripts"
