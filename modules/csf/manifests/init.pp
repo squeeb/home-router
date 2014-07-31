@@ -1,7 +1,6 @@
 class csf {
   class { "csf::config": }
   class { "perl::libwww": }
-  class { "perl::time_hires": }
 
   exec { "get-csf":
     cwd   => "/tmp",
