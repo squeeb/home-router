@@ -5,7 +5,7 @@ class csf {
 
   exec { "get-csf":
     cwd   => "/tmp",
-    command => "wget http://configserver.com/free/csf.tgz -o /tmp/csf.tgz",
+    command => "wget http://configserver.com/free/csf.tgz -O /tmp/csf.tgz",
     creates => "/tmp/csf.tgz",
   }
 
