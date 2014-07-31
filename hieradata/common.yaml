@@ -11,6 +11,7 @@ classes:
   - "puppet"
   - "iptraf"
   - "vim"
+  - "csf"
 
 users::sysadmins:
   squeeb:

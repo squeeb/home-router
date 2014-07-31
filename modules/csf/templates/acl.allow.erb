@@ -1,0 +1,9 @@
+<% @ports.each do |port| -%>
+<%  host = scope.function_get_ip_addr([@host]) -%>
+<%  rule = [] -%>
+<%  rule.push(@protocol) unless @protocol == "any" -%>
+<%  rule.push(@direction) -%>
+<%  rule.push("d=#{port}") -%>
+<%  @direction == "in" ? rule.push("s=#{host}") : rule.push("d=#{host}") -%>
+<%= rule.join("|") %> <%= "# "+@name %>
+<% end -%>
