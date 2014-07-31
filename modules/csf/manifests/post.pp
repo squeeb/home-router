@@ -5,7 +5,7 @@ class csf::post {
     owner => "root",
     group => "root",
     source => "puppet:///modules/csf/${::role}/csfpost.sh",
-    require => Package["csf"],
+    require => Exec["build-csf"],
     notify => Service["csf"],
   }
 }
