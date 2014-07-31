@@ -1,0 +1,14 @@
+---
+resolv::options:
+  - "timeout:1"
+  - "attempts:1"
+#  - "rotate"
+  - "single-request"
+  - "single-request-reopen"
+resolv::resolvers:
+  - "8.8.8.8"
+  - "4.2.2.2"
+  - "4.2.2.1"
+resolv::search:
+  - "colo.eggwee.co.uk"
+  - "eggwee.co.uk"
