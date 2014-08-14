@@ -78,7 +78,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "download" do |c|
-    c.vm.box = "Ubuntu-1204-swc"
+    c.vm.box = "Ubuntu-1310-v1"
     c.vm.hostname = "download.swcnet.net"
     c.vm.network "private_network",
       ip: "10.10.1.3",
@@ -105,15 +105,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "fileserver" do |c|
-    c.vm.box = "Ubuntu-1204-swc"
+    c.vm.box = "Ubuntu-1310-v1"
     c.vm.hostname = "fileserver.swcnet.net"
     c.vm.network "private_network",
-      ip: "10.10.1.4",
-      netmask: "255.255.255.0",
-      virtualbox__intnet: "int1"
-    c.vm.network "forwarded_port", guest: 139, host: 139
-    c.vm.network "forwarded_port", guest: 548, host: 548
-
+      ip: "192.168.99.10"
     c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
     c.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "manifests"
@@ -158,6 +153,48 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.facter = {
         "role" => "nms",
         "datacenter" => "home",
+      }
+    end
+  end
+
+  config.vm.define "build" do |c|
+    c.vm.box = "Ubuntu-1310-v1"
+    c.vm.hostname = "vagrant-build.swcnet.net"
+    c.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+    end
+
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "build",
+        "datacenter" => "home",
+      }
+    end
+  end
+
+  config.vm.define "vps1" do |c|
+    c.vm.box = "Ubuntu-1310-v1"
+    c.vm.hostname = "jon.colo.eggwee.co.uk"
+    c.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+    end
+    c.vm.network "private_network",
+      ip: "192.168.99.10"
+
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "vps",
+        "datacenter" => "syn",
       }
     end
   end

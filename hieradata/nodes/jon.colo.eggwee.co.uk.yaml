@@ -1,0 +1,8 @@
+---
+classes:
+  - "owncloud"
+
+mountpoints:
+  "/data":
+    device: "/mnt/data"
+    options: "bind"

@@ -2,6 +2,7 @@
 classes:
   - "samba"
   - "unrar"
+  - "owncloud"
 
 samba::config::workgroup: "SWC"
 samba::config::server_string: "%{::hostname}"
@@ -29,4 +30,12 @@ apt::repos:
     location: "http://archive.ubuntu.com/ubuntu"
     release: "%{::lsbdistcodename}"
     repos: "multiverse"
+    include_src: false
+  "ownCloud":
+    enabled: true
+    location: "http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_13.10/"
+    release: ""
+    repos: "/"
+    key: "BA684223"
+    key_source: "http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_13.10/Release.key"
     include_src: false
