@@ -6,3 +6,9 @@ mountpoints:
   "/data":
     device: "/mnt/data"
     options: "bind"
+
+csf::config::acls::allow:
+  - host: "any"
+    protocol: "tcp"
+    ports: "2222"
+    comment: "ssh"
