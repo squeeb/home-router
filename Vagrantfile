@@ -183,8 +183,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.provider "virtualbox" do |v|
       v.memory = 2048
     end
-    c.vm.network "private_network",
-      ip: "192.168.99.10"
+    c.vm.network "public_network"
 
     c.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "manifests"
