@@ -2,3 +2,4 @@
 etckeeper*
 environments
 /puppet.conf
+*.iso

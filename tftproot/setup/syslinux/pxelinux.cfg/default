@@ -1,0 +1,19 @@
+DEFAULT menu.c32
+TIMEOUT 300
+PROMPT 0
+MENU INCLUDE pxelinux.cfg/pxe.conf
+NOESCAPE 1
+LABEL BootLocal
+  localboot 0
+  TEXT HELP
+  Boot to local hard disk
+  ENDTEXT
+MENU SEPARATOR
+LABEL OS
+  MENU LABEL Operating Systems
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/pxe.conf pxelinux.cfg/os.conf
+LABEL Utility
+  MENU LABEL Utility
+  KERNEL menu.c32
+  APPEND pxelinux.cfg/pxe.conf pxelinux.cfg/utility.conf
