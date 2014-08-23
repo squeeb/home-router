@@ -50,7 +50,10 @@ class couchpotato {
     content => template("couchpotato/defaults.erb"),
   }
 
-  file { "/etc/couchpotato":
+  file { [
+    "/etc/couchpotato",
+    "/var/run/couchpotato"
+  ]:
     ensure => "directory",
     owner => "couchpotato",
     group => "download",
