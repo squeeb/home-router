@@ -24,13 +24,3 @@ csf::config::acls::allow:
     protocol: "tcp"
     ports: "443"
     comment: "https"
-
-#apt::repos:
-#  "ownCloud":
-#    enabled: true
-#    location: "http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_13.10/"
-#    release: ""
-#    repos: "/"
-#    key: "BA684223"
-#    key_source: "http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_13.10/Release.key"
-#    include_src: false
