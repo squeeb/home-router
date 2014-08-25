@@ -1,5 +1,5 @@
 class apache2::fastcgi {
-  package { "libapache2-mod-fastcgi":
+  package { "libapache2-mod-fcgid":
     ensure => "installed",
     require => Package["apache2"],
   }
