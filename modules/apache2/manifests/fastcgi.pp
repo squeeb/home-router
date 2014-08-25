@@ -4,8 +4,8 @@ class apache2::fastcgi {
     require => Package["apache2"],
   }
 
-  exec { "a2enmod fastcgi":
-    creates => "/etc/apache2/mods-enabled/fastcgi.load",
+  exec { "a2enmod fcgid":
+    creates => "/etc/apache2/mods-enabled/fcgid.load",
     require => Package["libapache2-mod-fcgid"],
     notify => Service["apache2"],
   }
