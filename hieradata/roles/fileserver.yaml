@@ -3,6 +3,7 @@ classes:
   - "samba"
   - "unrar"
   - "owncloud"
+  - "tftpd"
 
 samba::config::workgroup: "SWC"
 samba::config::server_string: "%{::hostname}"
@@ -31,3 +32,5 @@ apt::repos:
     release: "%{::lsbdistcodename}"
     repos: "multiverse"
     include_src: false
+
+tftpd::tftproot_path: "/data/tftproot"
