@@ -5,7 +5,7 @@ service tftp
   socket_type     = dgram
   wait            = yes
   user            = nobody
-  server          = /usr/sbin/in.tftpd
+  server          = /usr/sbin/atftpd
   server_args     = <%= @tftproot_path %>
   disable         = no
 }

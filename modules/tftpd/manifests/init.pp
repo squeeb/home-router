@@ -1,8 +1,13 @@
 class tftpd(
   $tftproot_path = "/tftproot"
 ) {
-  package { "tftpd":
+  package { "xinetd":
     ensure => "latest",
+  }
+
+  package { "atftpd":
+    ensure => "latest",
+    require => Package["xinetd"],
   }
 
   file { $tftproot_path:
@@ -18,13 +23,14 @@ class tftpd(
     group => "root",
     mode => "0660",
     content => template("tftpd/xinetd.conf.erb"),
-    require => Package["tftpd"],
+    require => Package["xinetd"],
     notify => Service["xinetd"],
   }
 
   service { "xinetd":
     ensure => "running",
     enable => true,
+    require => Package["xinetd"],
   }
 
   csf::acl { "tftpd":
