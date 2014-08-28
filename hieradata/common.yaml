@@ -13,6 +13,7 @@ classes:
   - "iptraf"
   - "vim"
   - "csf"
+  - "ssh::config"
 
 users::sysadmins:
   squeeb:
