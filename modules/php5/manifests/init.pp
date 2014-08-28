@@ -5,7 +5,6 @@ class php5 {
     "php5-common",
     "php5-gd",
     "php5-cli",
-    "php5-mysql",
     "php5-snmp",
     "php5-ldap",
     "php5-curl",
