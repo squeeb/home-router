@@ -1,6 +1,9 @@
 ---
 classes:
-  - "java"
+  - "apache2"
+  - "mysql::server"
+  - "php5"
+  - "observium"
 
 apt::repos:
   "webupd8team":
@@ -11,3 +14,8 @@ apt::repos:
     include_src: false
     key: "EEA14886"
     key_server: "keyserver.ubuntu.com"
+
+observium::database_name: "observium"
+observium::database_user: "observium"
+observium::database_pass: "observium"
+observium::database_server: "localhost"
