@@ -13,8 +13,6 @@ resolv::search:
   - "colo.eggwee.co.uk"
   - "eggwee.co.uk"
 
-csf::config::tcp_in:
-  - "22"
 csf::config::acls::allow:
   - host: "10.2.0.0/24"
     protocol: "any"
