@@ -1,5 +1,5 @@
 ---
-ssh::config::port: 2222
+sshd::config::port: 2222
 
 csf::post_cmds:
   - "/sbin/iptables -t nat -A POSTROUTING -s '10.2.100.0/24' -o vmbr0 -j MASQUERADE"
