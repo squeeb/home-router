@@ -1,9 +1,9 @@
 ---
 sshd::config::port: 2222
 
-csf::post_cmds:
-  - "/sbin/iptables -t nat -A POSTROUTING -s '10.2.100.0/24' -o vmbr0 -j MASQUERADE"
-  - "/sbin/iptables -t nat -A PREROUTING -i vmbr0 -d %{::ipaddress_vmbr0} -p tcp --dport 2222 -j DNAT --to 10.2.100.2:22"
+#csf::post_cmds:
+#  - "/sbin/iptables -t nat -A POSTROUTING -s '10.2.100.0/24' -o vmbr0 -j MASQUERADE"
+#  - "/sbin/iptables -t nat -A PREROUTING -i vmbr0 -d %{::ipaddress_vmbr0} -p tcp --dport 2222 -j DNAT --to 10.2.100.2:22"
 
 csf::config::tcp_in:
   - "2222"
