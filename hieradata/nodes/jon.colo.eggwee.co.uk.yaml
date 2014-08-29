@@ -11,16 +11,13 @@ mountpoints:
     device: "/mnt/data"
     options: "bind"
 
-csf::config::acls::allow:
-  - host: "any"
-    protocol: "tcp"
-    ports: "2222"
-    comment: "ssh"
-  - host: "any"
-    protocol: "tcp"
-    ports: "80"
-    comment: "http"
-  - host: "any"
-    protocol: "tcp"
-    ports: "443"
-    comment: "https"
+csf::config::tcp_in:
+  - "2222"
+  - "443"
+csf::config::udp_in:
+  - "444"
+csf::post_cmds:
+  - "/sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+  - "/sbin/iptables -t filter -A FORWARD -s 10.2.0.0/16 -j ACCEPT"
+  - "/sbin/iptables -t filter -A FORWARD -s 10.99.99.0/30 -j ACCEPT"
+  - "/sbin/iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT"
