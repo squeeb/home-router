@@ -11,6 +11,7 @@ class csf::config(
   $synflood_rate = 100,
   $eth_device = undef,
   $cc_lookups = 0,
+  $cc_deny = [],
   $account_tracking = 2,
   $ssh_failed_login_threshold = 5,
   $ssh_block_expire = 300,

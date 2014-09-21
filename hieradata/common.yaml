@@ -84,3 +84,7 @@ csf::config::synflood_rate: 100
 csf::config::account_tracking: 1
 csf::config::ssh_failed_login_threshold: 3
 csf::config::ssh_block_expire: 3600
+csf::config::cc_lookups: 1
+csf::config::cc_deny:
+  - "CN"
+  - "RU
