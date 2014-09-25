@@ -87,4 +87,4 @@ csf::config::ssh_block_expire: 3600
 csf::config::cc_lookups: 1
 csf::config::cc_deny:
   - "CN"
-  - "RU
+  - "RU"
