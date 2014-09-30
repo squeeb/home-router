@@ -1,10 +1,10 @@
 ---
-classes:
-  - "seafile"
-  - "mysql::server"
-  - "apache2"
-  - "apache2::fastcgi"
-  - "apache2::proxy_http"
+#classes:
+#  - "seafile"
+#  - "mysql::server"
+#  - "apache2"
+#  - "apache2::fastcgi"
+#  - "apache2::proxy_http"
 
 mountpoints:
   "/data":
