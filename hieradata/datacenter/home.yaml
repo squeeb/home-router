@@ -31,3 +31,6 @@ csf::config::acls::allow:
   - host: "85.199.239.140"
     protocol: "any"
     comment: "work2"
+  - host: "10.99.99.1"
+    protocol: "any"
+    comment: "jon"
