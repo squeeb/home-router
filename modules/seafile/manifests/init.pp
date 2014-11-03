@@ -1,6 +1,4 @@
-class seafile {
-
-  class { "apache2": }
+class seafile($version) {
 
   package {[
     "python-flup",
@@ -12,15 +10,15 @@ class seafile {
 
   exec { "get-seafile":
     cwd => "/opt/seafile",
-    command => "wget https://bitbucket.org/haiwen/seafile/downloads/seafile-server_3.1.2_x86-64.tar.gz -O /opt/seafile/installed/seafile-server_3.1.2_x86-64.tar.gz",
-    creates => "/opt/seafile/installed/seafile-server_3.1.2_x86-64.tar.gz",
+    command => "wget https://bitbucket.org/haiwen/seafile/downloads/seafile-server_${version}_x86-64.tar.gz -O /opt/seafile/installed/seafile-server_${version}_x86-64.tar.gz",
+    creates => "/opt/seafile/installed/seafile-server_${version}_x86-64.tar.gz",
     require => File["/opt/seafile/installed"],
   }
 
   exec { "extract-seafile":
     cwd => "/opt/seafile",
-    command => "tar zxf /opt/seafile/installed/seafile-server_3.1.2_x86-64.tar.gz -C /opt/seafile && chown -R cloud /opt/seafile",
-    creates => "/opt/seafile/seafile-server-3.1.2/seafile.sh",
+    command => "tar zxf /opt/seafile/installed/seafile-server_${version}_x86-64.tar.gz -C /opt/seafile && chown -R cloud /opt/seafile",
+    creates => "/opt/seafile/seafile-server-${version}/seafile.sh",
     require => [
       Exec["get-seafile"],
       File["/opt/seafile"],
@@ -37,6 +35,22 @@ class seafile {
     group => "root",
     mode => "6770",
     require => User["cloud"],
+  }
+
+  file { "/etc/apache2/sites-available/seafile.conf":
+    ensure  => "file",
+    mode    => "0660",
+    owner   => "root",
+    group   => "www-data",
+    content => template("seafile/apache2.conf.erb"),
+    notify  => Exec["a2ensite seafile"],
+    require => Package["apache2"],
+  }
+
+  exec { "a2ensite seafile":
+    refreshonly => true,
+    creates     => "/etc/apache2/sites-enabled/seafile.conf",
+    notify      => Service["apache2"],
   }
 
   user { "cloud":

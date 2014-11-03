@@ -178,7 +178,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "vps1" do |c|
-    c.vm.box = "Ubuntu-1310-v1"
+    c.vm.box = "Ubuntu-1404-v1"
     c.vm.hostname = "jon.colo.eggwee.co.uk"
     c.vm.provider "virtualbox" do |v|
       v.memory = 2048

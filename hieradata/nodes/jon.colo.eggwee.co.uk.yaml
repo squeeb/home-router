@@ -1,10 +1,10 @@
 ---
-#classes:
-#  - "seafile"
-#  - "mysql::server"
-#  - "apache2"
-#  - "apache2::fastcgi"
-#  - "apache2::proxy_http"
+classes:
+  - "seafile"
+  - "mysql::server"
+  - "apache2"
+  - "apache2::fastcgi"
+  - "apache2::proxy_http"
 
 mountpoints:
   "/data":
@@ -21,3 +21,17 @@ csf::post_cmds:
   - "/sbin/iptables -t filter -A FORWARD -s 10.2.0.0/16 -j ACCEPT"
   - "/sbin/iptables -t filter -A FORWARD -s 10.99.99.0/30 -j ACCEPT"
   - "/sbin/iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT"
+
+seafile::version: "3.1.7"
+
+apache2::fastcgi::backends:
+  "seahub":
+    host: "127.0.0.1:8000"
+    enabled: true
+
+apt::repos:
+  "multiverse":
+    enabled: true
+    location: "http://archive.ubuntu.com/ubuntu"
+    release: "%{::lsbdistcodename}"
+    repos: "multiverse"

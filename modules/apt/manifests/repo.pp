@@ -1,9 +1,9 @@
 define apt::repo(
   $enabled = true,
+  $include_src = false,
   $location,
   $release,
   $repos,
-  $include_src,
   $key = undef,
   $key_source = undef,
   $key_server = undef,
