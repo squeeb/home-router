@@ -71,7 +71,7 @@ apt::repos:
   "puppetlabs":
     enabled: true
     location: "http://apt.puppetlabs.com"
-    release: "%{::lsbdistcodename}"
+    release: "stable"
     repos: "main dependencies"
     include_src: false
     key: "4BD6EC30"
