@@ -34,3 +34,6 @@ csf::config::acls::allow:
   - host: "10.99.99.1"
     protocol: "any"
     comment: "jon"
+  - host: "192.168.1.0/24"
+    protocol: "any"
+    comment: "netlab"
