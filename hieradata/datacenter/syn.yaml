@@ -35,3 +35,7 @@ csf::config::acls::allow:
   - host: "172.21.100.56"
     protocol: "any"
     comment: "admin2-247"
+  - host: "89.21.3.20"
+    protocol: "any"
+    comment: "home-vtun0"
+
