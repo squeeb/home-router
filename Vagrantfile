@@ -106,6 +106,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "fileserver" do |c|
     c.vm.box = "Ubuntu-1310-v1"
+    c.vm.box_url = "http://mirror.otbeach.com/vagrant_vms/OTB_Precise64-v1.box"
     c.vm.hostname = "fileserver.swcnet.net"
     c.vm.network "private_network",
       ip: "192.168.99.10"

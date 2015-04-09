@@ -1,6 +1,6 @@
 class puppet {
-  package { "puppet":
-    ensure => "3.7.3-1puppetlabs1",
+  package { ["puppet", "puppet-common"]:
+    ensure => "3.7.4-1puppetlabs1",
     require => Class["repo"],
   }
 

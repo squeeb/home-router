@@ -4,6 +4,7 @@ classes:
   - "unrar"
   - "owncloud"
   - "tftpd"
+  - "vsftpd"
 
 samba::config::workgroup: "SWC"
 samba::config::server_string: "%{::hostname}"
