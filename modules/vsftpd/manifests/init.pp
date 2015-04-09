@@ -10,6 +10,7 @@ class vsftpd {
     group   => 'root',
     content => template('vsftpd/vsftpd.conf.erb'),
     require => Package['vsftpd'],
+    notify  => Service['vsftpd'],
   }
 
   service { 'vsftpd':
