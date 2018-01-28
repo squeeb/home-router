@@ -9,7 +9,6 @@ classes:
   - "emailforward"
   - "user::systems"
   - "user::sysadmins"
-  - "puppet"
   - "iptraf"
   - "vim"
   - "csf"

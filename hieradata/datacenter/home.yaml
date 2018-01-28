@@ -6,34 +6,16 @@ resolv::options:
   - "single-request"
   - "single-request-reopen"
 resolv::resolvers:
-  - "10.2.0.254"
-  - "10.2.3.254"
-  - "8.8.8.8"
+  - 192.168.64.1
+  - 8.8.8.8
 resolv::search:
-  - "swcnet.net"
-  - "wlan.swcnet.net"
-  - "mgmt.swcnet.net"
+  - mgmt.home.crigby.net
+  - home.crigby.net
 
 csf::config::acls::allow:
-  - host: "10.0.2.2"
-    protocol: "any"
-    comment: "vagrant"
-  - host: "10.2.0.0/24"
-    protocol: "any"
-    comment: "home"
-  - host: "any"
-    protocol: "tcp"
-    ports: "22"
-    comment: "ssh"
-  - host: "89.238.149.34"
-    protocol: "any"
-    comment: "work1"
-  - host: "85.199.239.140"
-    protocol: "any"
-    comment: "work2"
-  - host: "10.99.99.1"
-    protocol: "any"
-    comment: "jon"
-  - host: "192.168.1.0/24"
-    protocol: "any"
-    comment: "netlab"
+  - host: 10.0.2.2
+    protocol: any
+    comment: vagrant
+  - host: 192.168.64.0/23
+    protocol: any
+    comment: home
