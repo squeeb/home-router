@@ -1,4 +1,0 @@
-#ZONE	TYPE		OPTIONS
-<% @zones.each do |zone,options| -%>
-<%= zone %>	<%= options.fetch("type", "ipv4") %>		<%= options.fetch("options.options","") %>
-<% end %>

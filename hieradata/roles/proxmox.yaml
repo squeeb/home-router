@@ -5,7 +5,6 @@ classes:
   - "hosts"
   - "proxmox"
   - "proxmox::scripts"
-  - "csf::post"
 
 motd::note: pve
 
