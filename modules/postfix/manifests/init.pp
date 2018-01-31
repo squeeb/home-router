@@ -6,7 +6,6 @@ class postfix(
   $use_upstream_mx_records = false,
   $mx_domain = undef,
   $upstream_mta_server = undef,
-  $virtual_domains = [],
   $restricted_sender_domains = [],
   $service_ensure = 'running',
 ){
@@ -45,11 +44,6 @@ class postfix(
     default => 'loopback-only',
   }
 
-  $daemon_directory = $::operatingsystem ? {
-    /^(Debian|Ubuntu)$/ => '/usr/lib/postfix',
-    default => '/usr/libexec/postfix',
-  }
-
   package { 'postfix':
     ensure => 'installed',
   }
@@ -63,12 +57,6 @@ class postfix(
     ensure => $service_ensure,
     enable => true,
     start  => '/usr/sbin/postfix stop ; /usr/sbin/postfix start',
-  }
-
-  file { '/etc/postfix/generic':
-    ensure => 'absent',
-    owner => 'root',
-    group => 'root',
   }
 
   file { '/etc/postfix/main.cf':
@@ -112,13 +100,6 @@ class postfix(
     line => 'devnull: /dev/null',
     require => File['/etc/aliases'],
     notify => Exec['newaliases'],
-  }
-
-  exec { 'create_virtualdb':
-    command     => 'postmap /etc/postfix/virtual',
-    require     => File['/etc/postfix/virtual'],
-    notify      => Service['postfix'],
-    refreshonly => true,
   }
 
   exec { 'newaliases':
