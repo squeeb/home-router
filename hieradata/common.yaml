@@ -12,6 +12,7 @@ classes:
   - "iptraf"
   - "vim"
   - "sshd::config"
+  - 'postfix'
 
 users::sysadmins:
   squeeb:
@@ -62,6 +63,13 @@ sudo::groups:
       - "NOPASSWD: ALL"
       - "NSU"
       - "NSHELLS"
+
+
+postfix::virtual_domains:
+  "devnull@localhost":
+    domains:
+     - "test.com"
+     - "example.com"
 
 sysadmin::email_address: "squeeb@radioglitch.com"
 
