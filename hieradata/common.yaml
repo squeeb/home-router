@@ -68,7 +68,7 @@ sysadmin::email_address: "squeeb@radioglitch.com"
 
 apt::repos:
   "puppetlabs":
-    enabled: true
+    enabled: false
     location: "http://apt.puppetlabs.com"
     release: "stable"
     repos: "main dependencies"
