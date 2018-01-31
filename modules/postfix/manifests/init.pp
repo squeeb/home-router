@@ -66,13 +66,9 @@ class postfix(
   }
 
   file { '/etc/postfix/generic':
-    ensure => 'file',
+    ensure => 'absent',
     owner => 'root',
     group => 'root',
-    mode => '0644',
-    content => template('postfix/generic.erb'),
-    require => Package['postfix'],
-    notify => Exec['create_genericdb'],
   }
 
   file { '/etc/postfix/main.cf':
@@ -121,13 +117,6 @@ class postfix(
   exec { 'create_virtualdb':
     command     => 'postmap /etc/postfix/virtual',
     require     => File['/etc/postfix/virtual'],
-    notify      => Service['postfix'],
-    refreshonly => true,
-  }
-
-  exec { 'create_genericdb':
-    command     => 'postmap /etc/postfix/generic',
-    require     => File['/etc/postfix/generic'],
     notify      => Service['postfix'],
     refreshonly => true,
   }
