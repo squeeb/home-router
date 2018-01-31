@@ -1,5 +1,4 @@
 class postfix(
-  $sysadmin_email_address,
   $local_domain,
   $local_hostname = undef,
   $relay = false,
@@ -11,6 +10,8 @@ class postfix(
   $restricted_sender_domains = [],
   $service_ensure = 'running',
 ){
+
+  $sysadmin_email_address = hiera('sysadmin::email_address')
 
   if ($use_upstream_mta) and ($use_upstream_mx_records == false) and ($upstream_mta_server == undef) {
     fail('You must assign an upstream_mta_server if you are not using MX lookups for the upstream MTA.')
