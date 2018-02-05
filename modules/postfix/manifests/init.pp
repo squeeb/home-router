@@ -8,6 +8,7 @@ class postfix(
   $upstream_mta_server = undef,
   $restricted_sender_domains = [],
   $service_ensure = 'running',
+  $virtual_domains,
 ){
 
   $sysadmin_email_address = hiera('sysadmin::email_address')
@@ -76,7 +77,6 @@ class postfix(
     mode => '0644',
     content => template('postfix/virtual.erb'),
     require => Package['postfix'],
-    notify => Exec['create_virtualdb'],
   }
 
   file { '/etc/aliases':
