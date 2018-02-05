@@ -1,0 +1,25 @@
+mydomain = <%= @local_domain %>
+<% if @local_hostname -%>
+myhostname = <%= @local_hostname %>.<%= @local_domain %>
+smtp_helo_name = <%= @local_hostname %>.<%= @local_domain %>
+<%- end -%>
+inet_interfaces = <%= @listen %>
+inet_protocols = all
+mydestination = $myhostname, localhost.$mydomain, localhost
+unknown_local_recipient_reject_code = 550
+mynetworks_style = host
+<% if @use_upstream_mta -%>
+  <%- if @use_upstream_mx_records -%>
+relayhost = <%= @mx_domain %>
+  <%- else -%>
+relayhost = <%= @upstream_mta_server %>
+  <%- end -%>
+<%- end -%>
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+debug_peer_level = 2
+<% if @relay -%>
+smtpd_sender_restrictions =
+   check_sender_access regexp:/etc/postfix/sender_access,
+   reject_unlisted_sender
+<% end -%>

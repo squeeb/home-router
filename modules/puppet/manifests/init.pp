@@ -1,7 +1,6 @@
 class puppet {
   package { ["puppet", "puppet-common"]:
-    ensure => "3.7.4-1puppetlabs1",
-    require => Class["repo"],
+    ensure => latest,
   }
 
   file { "/etc/puppet/puppet.conf":

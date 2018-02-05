@@ -1,0 +1,6 @@
+<% @virtual_domains.each do |destination,attributes| -%>
+  <%- attributes.fetch("domains").each do |domain| -%>
+<%= domain %> dummy
+@<%= domain %> <%= destination %>
+  <%- end -%>
+<%- end -%>

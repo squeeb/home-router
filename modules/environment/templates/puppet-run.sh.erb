@@ -9,7 +9,6 @@ fi
 
 sudo -E puppet apply $* \
       --show_diff \
-      --parser future \
       --environment=<%= @environment %> \
       --modulepath=/etc/puppet/modules \
       /etc/puppet/manifests/default.pp

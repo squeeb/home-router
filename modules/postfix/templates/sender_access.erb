@@ -1,0 +1,5 @@
+<% @restricted_sender_domains.each do |rule| -%>
+  <%- rule.fetch("domains").each do |domain| -%>
+<%= domain %> <%= rule.fetch("action") %>
+  <%- end -%>
+<%- end -%>

@@ -1,4 +1,0 @@
-#SOURCE         DEST            POLICY          LOG           BURST:LIMIT
-<% @policies.each do |policy| -%>
-<%= "#{policy.fetch("source")}\t\t#{policy.fetch("dest")}\t\t#{policy.fetch("policy")}\n" -%>
-<% end -%>

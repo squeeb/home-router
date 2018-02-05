@@ -1,14 +1,12 @@
 ---
 classes:
+  - 'apt::unattended'
   - "zram"
   - "hosts"
   - "proxmox"
   - "proxmox::scripts"
-  - "csf::post"
 
-motd::note: >
-               Proxmox Server.
-               See http://wiki.247.otbeach.com/index.php/Systems#OpenVZ.2FProxmox_guides for help.
+motd::note: pve
 
 apt::repos:
   "pve-enterprise":
@@ -24,22 +22,6 @@ apt::repos:
     repos: "pve-no-subscription"
     include_src: false
 
-sysctl::options:
-  sunrpc.ve_allow_rpc: 1
-  fs.nfs.ve_allow_nfs: 1
-  kernel.ve_allow_kthreads: 1
-
 kernel::modules:
   nfs:
     ensure: "present"
-
-csf::post_cmds:
-  - "/sbin/iptables -A INPUT -i venet0 -j ACCEPT"
-  - "/sbin/iptables -A OUTPUT -o venet0 -j ACCEPT"
-  - "/sbin/iptables -A INPUT -i vmbr1 -j ACCEPT"
-  - "/sbin/iptables -A OUTPUT -o vmbr1 -j ACCEPT"
-  - "/sbin/iptables -A FORWARD -j ACCEPT -p all -s 0/0 -i venet0"
-  - "/sbin/iptables -A FORWARD -j ACCEPT -p all -s 0/0 -o venet0"
-  - "/sbin/iptables -A FORWARD -j ACCEPT -p all -s 0/0 -i vmbr1"
-  - "/sbin/iptables -A FORWARD -j ACCEPT -p all -s 0/0 -o vmbr1"
-  - "/sbin/iptables -A INPUT -m addrtype --dst-type MULTICAST -j ACCEPT"

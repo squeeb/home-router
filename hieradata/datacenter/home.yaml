@@ -12,6 +12,8 @@ resolv::search:
   - mgmt.home.crigby.net
   - home.crigby.net
 
+postfix::local_domain: home.crigby.net
+
 csf::config::acls::allow:
   - host: 10.0.2.2
     protocol: any

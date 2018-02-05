@@ -13,6 +13,7 @@ classes:
   - "vim"
     #  - "csf"
   - "sshd::config"
+  - 'postfix'
 
 users::sysadmins:
   squeeb:
@@ -64,26 +65,10 @@ sudo::groups:
       - "NSU"
       - "NSHELLS"
 
+postfix::virtual_domains:
+  "devnull@localhost":
+    domains:
+     - "test.com"
+     - "example.com"
+
 sysadmin::email_address: "squeeb@radioglitch.com"
-
-# apt::repos:
-#   "puppetlabs":
-#     enabled: true
-#     location: "http://apt.puppetlabs.com"
-#     release: "stable"
-#     repos: "main dependencies"
-#     include_src: false
-#     key: "4BD6EC30"
-#     key_source: "https://apt.puppetlabs.com/pubkey.gpg"
-
-# csf::config::icmp_in: true
-# csf::config::filter_ipv6: false
-# csf::config::filter_synflood: true
-# csf::config::synflood_rate: 100
-# csf::config::account_tracking: 1
-# csf::config::ssh_failed_login_threshold: 3
-# csf::config::ssh_block_expire: 3600
-# csf::config::cc_lookups: 1
-# csf::config::cc_deny:
-#   - "CN"
-#   - "RU"
