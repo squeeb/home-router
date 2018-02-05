@@ -32,9 +32,4 @@ class tftpd(
     enable => true,
     require => Package["xinetd"],
   }
-
-  csf::acl { "tftpd":
-    protocol => "udp",
-    ports => ["69"],
-  }
 }

@@ -81,9 +81,4 @@ class couchpotato {
     mode => "6775",
     require => User::System["couchpotato","download"],
   }
-
-  csf::acl { "tcp-couchpotato-in":
-    ports => [5050],
-  }
-
 }
