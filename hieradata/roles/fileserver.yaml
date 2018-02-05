@@ -2,7 +2,7 @@
 classes:
   - "samba"
   - "unrar"
-  - "owncloud"
+    #  - "owncloud"
   - "tftpd"
   - "vsftpd"
 
@@ -17,14 +17,14 @@ samba::config::shares:
     create_mask: "0664"
     directory_mask: "0775"
     writeable: "yes"
-  usb:
-    comment: "USB Mount"
-    path: "/usb"
-    guest_ok: "no"
-    browseable: "yes"
-    create_mask: "0664"
-    directory_mask: "0775"
-    writeable: "yes"
+  # usb:
+  #   comment: "USB Mount"
+  #   path: "/usb"
+  #   guest_ok: "no"
+  #   browseable: "yes"
+  #   create_mask: "0664"
+  #   directory_mask: "0775"
+  #   writeable: "yes"
 
 apt::repos:
   "multiverse":
