@@ -1,6 +1,5 @@
 ---
 classes:
-  - 'apt::unattended'
   - "zram"
   - "hosts"
   - "proxmox"
