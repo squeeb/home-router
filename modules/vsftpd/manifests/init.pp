@@ -1,4 +1,5 @@
-class vsftpd {
+class vsftpd($ipv6 = 'YES') {
+
   package { 'vsftpd':
     ensure => latest,
   }
