@@ -10,12 +10,12 @@ root  ALL=(ALL)   ALL
 vagrant ALL=(ALL) NOPASSWD: ALL
 <%- @users.each do |user| -%>
   <%- if user["enabled"] then -%>
-<%= user["user"] %> <%= user["host"] %>=(<%= user["can_sudo_to"].join(",") %>) <%= user["flags"].join(", ") %>
+<%= user["user"] %> ALL=(<%= user["can_sudo_to"].join(",") %>) <%= user["flags"].join(", ") %>
   <%- end -%>
 <%- end -%>
 
 <%- @groups.each do |group| -%>
   <%- if group["enabled"] then -%>
-%<%= group["group"] %> <%= group["host"] %>=(<%= group["can_sudo_to"].join(",") %>) <%= group["flags"].join(", ") %>
+%<%= group["group"] %> ALL=(<%= group["can_sudo_to"].join(",") %>) <%= group["flags"].join(", ") %>
   <%- end -%>
 <% end %>
