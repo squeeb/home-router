@@ -1,4 +1,8 @@
+<% if @ipv6 %>
+listen_ipv6=YES
+<% else %>
 listen=YES
+<% end %>
 anonymous_enable=NO
 local_enable=YES
 write_enable=YES
@@ -10,4 +14,3 @@ connect_from_port_20=YES
 secure_chroot_dir=/var/run/vsftpd/empty
 pam_service_name=vsftpd
 rsa_cert_file=/etc/ssl/private/vsftpd.pem
-listen_ipv6=<%= @ipv6 %>
