@@ -1,4 +1,7 @@
-class vsftpd($ipv6 = 'YES') {
+class vsftpd(
+  $ipv6 = 'YES',
+  $local_root = '/data/'
+) {
 
   package { 'vsftpd':
     ensure => latest,

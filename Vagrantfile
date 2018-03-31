@@ -5,81 +5,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "OTB-Debian70-v3"
-  config.vm.box_url = "http://mirror.otbeach.com/vagrant_vms/OTB_Debian70-v3.box"
   config.vm.synced_folder ".", "/etc/puppet", type: "rsync"
 
-  config.vm.define "router1" do |c|
-    c.vm.hostname = "router1.lan"
-    c.vm.network "private_network",
-      ip: "10.10.1.1",
-      netmask: "255.255.255.252",
-      virtualbox__intnet: "int1"
-    c.vm.network "private_network",
-      ip: "10.10.2.1",
-      network: "255.255.255.252",
-      virtualbox__intnet: "int2"
-
-    c.vm.provision "puppet" do |puppet|
-      puppet.manifests_path = "manifests"
-      puppet.module_path = "modules"
-      puppet.working_directory = "/etc/puppet"
-      puppet.options = ['--environment production --parser future --show_diff']
-      puppet.hiera_config_path = "hiera.yaml"
-      puppet.facter = {
-        "role" => "shorewall",
-        "datacenter" => "home",
-      }
-    end
-  end
-
-  config.vm.define "router2" do |c|
-    c.vm.hostname = "router2.lan"
-    c.vm.network "private_network",
-      ip: "10.10.1.1",
-      netmask: "255.255.255.0",
-      virtualbox__intnet: "int1"
-    c.vm.network "private_network",
-      ip: "10.10.2.2",
-      network: "255.255.255.252",
-      virtualbox__intnet: "int2"
-
-    c.vm.provision "puppet" do |puppet|
-      puppet.manifests_path = "manifests"
-      puppet.module_path = "modules"
-      puppet.working_directory = "/etc/puppet"
-      puppet.options = ['--environment production --parser future --show_diff']
-      puppet.hiera_config_path = "hiera.yaml"
-      puppet.facter = {
-        "role" => "shorewall",
-        "datacenter" => "home",
-      }
-    end
-  end
-
-  config.vm.define "pvz01" do |c|
-    c.vm.hostname = "pvz01.swcnet.net"
-    c.vm.network "private_network",
-      ip: "10.10.1.2",
-      netmask: "255.255.255.0",
-      virtualbox__intnet: "int1"
-
-    c.vm.provision "puppet" do |puppet|
-      puppet.manifests_path = "manifests"
-      puppet.module_path = "modules"
-      puppet.working_directory = "/etc/puppet"
-      puppet.options = ['--environment production --parser future --show_diff']
-      puppet.hiera_config_path = "hiera.yaml"
-      puppet.facter = {
-        "role" => "proxmox",
-        "datacenter" => "home",
-      }
-    end
-  end
-
   config.vm.define "download" do |c|
-    c.vm.box = "Ubuntu-1310-v1"
-    c.vm.hostname = "download.swcnet.net"
+    c.vm.box = "ubuntu/xenial64"
+    c.vm.hostname = "download.home.crigby.net"
     c.vm.network "private_network",
       ip: "10.10.1.3",
       netmask: "255.255.255.0",
@@ -105,9 +35,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "fileserver" do |c|
-    c.vm.box = "Ubuntu-1310-v1"
-    c.vm.box_url = "http://mirror.otbeach.com/vagrant_vms/OTB_Precise64-v1.box"
-    c.vm.hostname = "fileserver.swcnet.net"
+    c.vm.box = "ubuntu/xenial64"
+    c.vm.hostname = "fileserver.home.crigby.net"
     c.vm.network "private_network",
       ip: "192.168.99.10"
     c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
@@ -125,8 +54,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "pbx" do |c|
-    c.vm.box = "Ubuntu-1204-swc"
-    c.vm.hostname = "pbx.swcnet.net"
+    c.vm.box = "ubuntu/xenial64"
+    c.vm.hostname = "pbx.home.crigby.net"
     c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
     c.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "manifests"
@@ -143,7 +72,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "nms" do |c|
     c.vm.box = "Ubuntu-1204-swc"
-    c.vm.hostname = "nms.swcnet.net"
+    c.vm.hostname = "nms.home.crigby.net"
     c.vm.provision "shell", inline: "[[ ! -d /data ]] && sudo mkdir /data ||true"
     c.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "manifests"
@@ -160,7 +89,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "build" do |c|
     c.vm.box = "Ubuntu-1310-v1"
-    c.vm.hostname = "vagrant-build.swcnet.net"
+    c.vm.hostname = "vagrant-build.home.crigby.net"
     c.vm.provider "virtualbox" do |v|
       v.memory = 2048
     end
@@ -201,7 +130,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "nms" do |c|
     c.vm.box = "Ubuntu-1310-v1"
-    c.vm.hostname = "nms.swcnet.net"
+    c.vm.hostname = "nms.home.crigby.net"
     c.vm.provider "virtualbox" do |v|
       v.memory = 2048
     end
