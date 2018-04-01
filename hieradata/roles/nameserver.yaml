@@ -11,6 +11,7 @@ bind9::forwarders:
 bind9::acls:
   - name: 'home-networks'
     subnets:
+      - '2001:8b0:7a51::/48'
       - '192.168.64.0/24'
       - '192.168.65.0/24'
       - '192.168.66.0/24'
