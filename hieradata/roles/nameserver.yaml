@@ -29,7 +29,7 @@ bind9::zones:
     ttl: 300
     soa:
       email: 'root.mgmt.home.crigby.net.'
-      serial: 2018040101
+      serial: 2018040102
       refresh: 86400
       retry: 3600
       expire: 86400
@@ -56,6 +56,9 @@ bind9::zones:
       - name: 'fileserver'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f67::12'
+      - name: 'fileserver'
+        type: 'A'
+        value: '192.168.64.12'
       - name: 'gf-livingroom-sw1'
         type: 'A'
         value: '192.168.64.3'
@@ -82,7 +85,7 @@ bind9::zones:
     ttl: 300
     soa:
       email: 'root.mgmt.home.crigby.net.'
-      serial: 2018040101
+      serial: 2018040102
       refresh: 86400
       retry: 3600
       expire: 86400
@@ -91,6 +94,9 @@ bind9::zones:
       - name: '@'
         type: 'NS'
         value: 'ns1.mgmt.home.crigby.net.'
+      - name: 'fileserver'
+        type: 'A'
+        value: '192.168.65.12'
       - name: 'fileserver'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f66::12'
