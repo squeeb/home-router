@@ -29,5 +29,5 @@ class bind9(
     require => Package['bind9'],
   }
 
-  create_resources('bind9::zone', $zones, $defaults = { require => File['/etc/bind/zones/']})
+  create_resources('bind9::zone', $zones)
 }
