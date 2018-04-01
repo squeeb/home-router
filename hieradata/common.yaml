@@ -65,6 +65,13 @@ sudo::groups:
       - "NOPASSWD: ALL"
       - "NSU"
       - "NSHELLS"
+  - group: 'ubuntu'
+    enabled: true
+    host: 'ALL'
+    can_sudo_to:
+      - 'ALL'
+    flags:
+      - 'NOPASSWD: ALL'
 
 postfix::virtual_domains:
   "devnull@localhost":

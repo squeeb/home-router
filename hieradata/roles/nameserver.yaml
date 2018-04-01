@@ -1,0 +1,98 @@
+---
+classes:
+  - 'bind9'
+
+bind9::forwarders:
+  - '2001:4860:4860::8888'
+  - '2001:4860:4860::8844'
+  - '8.8.8.8'
+  - '10.8.4.4'
+
+bind9::acls:
+  - name: 'home-networks'
+    subnets:
+      - '192.168.64.0/24'
+      - '192.168.65.0/24'
+      - '192.168.66.0/24'
+      - '10.0.0.0/24'
+  - name: 'vagrant'
+    subnets:
+      - '10.0.0.0/16'
+      - '192.168.99.0/24'
+
+bind9::recursion: true
+
+bind9::zones:
+  'mgmt.home.crigby.net':
+    type: 'master'
+    ttl: 300
+    soa:
+      email: 'root.mgmt.home.crigby.net.'
+      serial: 2018040101
+      refresh: 86400
+      retry: 3600
+      expire: 86400
+      nttl: 300
+    records:
+      - name: 'ns1'
+        type: 'A'
+        value: '192.168.64.16'
+      - name: 'ns1'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::16'
+      - name: '@'
+        type: 'NS'
+        value: 'ns1'
+      - name: 'gf-core-sw1'
+        type: 'A'
+        value: '192.168.64.2'
+      - name: '1f-studio-sw1'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::4'
+      - name: 'cctv'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::13'
+      - name: 'fileserver'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::12'
+      - name: 'gf-livingroom-sw1'
+        type: 'A'
+        value: '192.168.64.3'
+      - name: 'gw1'
+        type: 'A'
+        value: '192.168.64.1'
+      - name: 'gw1'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::1'
+      - name: 'pdu1'
+        type: 'A'
+        value: '192.168.64.5'
+      - name: 'prometheus'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::15'
+      - name: 'pve1'
+        type: 'A'
+        value: '192.168.64.11'
+      - name: 'unifi'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::14'
+  'general.home.crigby.net':
+    type: 'master'
+    ttl: 300
+    soa:
+      email: 'root.mgmt.home.crigby.net.'
+      serial: 2018040101
+      refresh: 86400
+      retry: 3600
+      expire: 86400
+      nttl: 300
+    records:
+      - name: '@'
+        type: 'NS'
+        value: 'ns1.mgmt.home.crigby.net.'
+      - name: 'fileserver'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f66::12'
+      - name: 'mfc1'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f66::4'

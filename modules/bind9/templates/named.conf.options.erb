@@ -1,0 +1,32 @@
+<% @acls.each do |acl| %>
+acl <%= acl['name'] %> {
+<%  acl['subnets'].each do |subnet| -%>
+  <%= subnet %>;
+<%  end -%>
+};
+<% end -%>
+options {
+  directory "/var/cache/bind";
+  recursion <%= @recursion ? 'yes' : 'no' %>;
+<% if @recursion -%>
+  allow-query {
+  <%- @acls.each do |acl| -%>
+    <%= acl['name'] %>;
+  <%- end -%>
+  };
+<% end -%>
+  forwarders {
+<%- @forwarders.each do |forwarder| -%>
+    <%= forwarder %>;
+<%- end -%>
+  };
+
+  //========================================================================
+  // If BIND logs error messages about the root key being expired,
+  // you will need to update your keys.  See https://www.isc.org/bind-keys
+  //========================================================================
+  dnssec-validation auto;
+
+  auth-nxdomain no;    # conform to RFC1035
+  listen-on-v6 { any; };
+};

@@ -1,0 +1,7 @@
+<% @shares.each do |share| -%>
+<%= share.fetch("name") -%>
+ <%= "\"#{share.fetch("comment")}\"" -%>
+ <%= "cnidscheme:#{share.fetch("cnidscheme")}" if share.has_key?("cnidscheme") -%> <%= "options:#{share.fetch("options").join(',')}" if share.fetch("options") -%>
+ <%= "volsizelimit:#{share.fetch("volsizelimit")}" if share.has_key?("volsizelimit") -%>
+ <%= "allow:\"#{share.fetch("allowusers").join(',')}\"" if share.has_key?("allowusers") -%>
+<% end %>

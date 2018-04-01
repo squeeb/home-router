@@ -53,6 +53,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.define "nameserver" do |c|
+    c.vm.box = "ubuntu/xenial64"
+    c.vm.hostname = "ns1.home.crigby.net"
+    c.vm.network "private_network",
+      ip: "192.168.99.11"
+    c.vm.provision "shell", inline: "[[ ! -e /tmp/done ]] && sudo apt update -y && sudo apt install puppet -y && touch /tmp/done||true"
+    c.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.module_path = "modules"
+      puppet.working_directory = "/etc/puppet"
+      puppet.options = ['--environment production --parser future --show_diff']
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.facter = {
+        "role" => "nameserver",
+        "datacenter" => "home",
+      }
+    end
+  end
+
   config.vm.define "pbx" do |c|
     c.vm.box = "ubuntu/xenial64"
     c.vm.hostname = "pbx.home.crigby.net"

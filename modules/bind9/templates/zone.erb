@@ -1,0 +1,11 @@
+$TTL  <%= @ttl %>;
+@   IN    SOA     <%= @name %>. <%= @soa['email'] %> (
+                  <%= @soa['serial'] %>;
+                  <%= @soa['refresh'] %>;
+                  <%= @soa['retry'] %>;
+                  <%= @soa['expire'] %>;
+                  <%= @soa['nttl'] %>;
+);
+<% @records.each do |record| -%>
+<%= record['name'] %>       IN <%= record['type'] %> <%= record['value'] %>
+<% end -%>
