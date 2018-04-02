@@ -23,6 +23,11 @@ bind9::acls:
 
 bind9::recursion: true
 bind9::zones:
+  'otbeach.com':
+    type: 'forward'
+    forwarders:
+      - '172.23.1.25'
+      - '172.23.1.28'
   'otb.local':
     type: 'forward'
     forwarders:
