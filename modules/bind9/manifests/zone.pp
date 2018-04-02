@@ -1,16 +1,19 @@
 define bind9::zone(
   $type,
-  $ttl,
-  $soa,
-  $records
+  $ttl = 3600,
+  $soa = undef,
+  $records = undef,
+  $forwarders = undef,
 ){
-  file { "/etc/bind/zones/${name}.zone":
-    ensure  => file,
-    owner   => 'root',
-    group   => 'bind',
-    mode    => '0640',
-    content => template('bind9/zone.erb'),
-    notify  => Service['bind9'],
+  unless $type == 'forward' {
+    file { "/etc/bind/zones/${name}.zone":
+      ensure  => file,
+      owner   => 'root',
+      group   => 'bind',
+      mode    => '0640',
+      content => template('bind9/zone.erb'),
+      notify  => Service['bind9'],
+    }
   }
 
   file { "/etc/bind/zones/${name}.conf":

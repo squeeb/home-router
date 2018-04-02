@@ -22,14 +22,17 @@ bind9::acls:
       - '192.168.99.0/24'
 
 bind9::recursion: true
-
 bind9::zones:
+  'otb.local':
+    type: 'forward'
+    forwarders:
+      - '172.23.1.25'
+      - '172.23.1.28'
   'mgmt.home.crigby.net':
     type: 'master'
     ttl: 300
     soa:
       email: 'root.mgmt.home.crigby.net.'
-      serial: 2018040102
       refresh: 86400
       retry: 3600
       expire: 86400
@@ -53,6 +56,9 @@ bind9::zones:
       - name: 'cctv'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f67::13'
+      - name: 'cctv'
+        type: 'A'
+        value: '192.168.64.13'
       - name: 'fileserver'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f67::12'
@@ -85,7 +91,6 @@ bind9::zones:
     ttl: 300
     soa:
       email: 'root.mgmt.home.crigby.net.'
-      serial: 2018040102
       refresh: 86400
       retry: 3600
       expire: 86400

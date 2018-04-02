@@ -1,6 +1,6 @@
 $TTL  <%= @ttl %>;
 @   IN    SOA     <%= @name %>. <%= @soa['email'] %> (
-                  <%= @soa['serial'] %>;
+                  <%= Time.now.to_i %>;
                   <%= @soa['refresh'] %>;
                   <%= @soa['retry'] %>;
                   <%= @soa['expire'] %>;

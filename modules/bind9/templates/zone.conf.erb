@@ -1,4 +1,13 @@
 zone "<%= @name %>" {
   type <%= @type %>;
+<% if ['master', 'slave'].include? @type -%>
   file "<%= "/etc/bind/zones/#{@name}.zone"%>";
+<% elsif ['forward'].include? @type -%>
+  forward only;
+  forwarders {
+<%  @forwarders.each do |forwarder| -%>
+    <%= forwarder %>;
+<%  end -%>
+  };
+<% end -%>
 };
