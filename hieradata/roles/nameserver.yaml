@@ -33,7 +33,7 @@ bind9::zones:
     forwarders:
       - '172.23.1.25'
       - '172.23.1.28'
-   'otbsrv':
+  'otbsrv':
     type: 'forward'
     forwarders:
       - '172.23.1.25'
