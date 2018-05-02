@@ -96,6 +96,9 @@ bind9::zones:
       - name: 'unifi'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f67::14'
+      - name: 'nora'
+        type: 'AAAA'
+        value: '2001:8b0:7a51:2f67::2'
   'general.home.crigby.net':
     type: 'master'
     ttl: 300
