@@ -124,3 +124,19 @@ bind9::zones:
       - name: 'mfc1'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f66::4'
+  'home.crigby.net':
+    type: 'master'
+    ttl: 300
+    soa:
+      email: 'root.mgmt.home.crigby.net.'
+      refresh: 86400
+      retry: 3600
+      expire: 86400
+      nttl: 300
+    records:
+      - name: '@'
+        type: 'NS'
+        value: 'ns1.mgmt.home.crigby.net.'
+      - name: 'irc'
+        type: 'CNAME'
+        value: 'nora.mgmt.home.crigby.net.'
