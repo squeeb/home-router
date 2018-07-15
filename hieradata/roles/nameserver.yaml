@@ -148,4 +148,4 @@ bind9::zones:
         value: '2001:8b0:7a51:2f67::16'
       - name: 'irc'
         type: 'CNAME'
-        value: 'nora.mgmt.home.crigby.net'
+        value: 'nora.mgmt.home.crigby.net.'
