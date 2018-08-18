@@ -17,7 +17,7 @@ apt::repos:
   "pve-no-subscription":
     enabled: true
     location: "http://download.proxmox.com/debian"
-    release: "wheezy"
+    release: "stretch"
     repos: "pve-no-subscription"
     include_src: false
 
