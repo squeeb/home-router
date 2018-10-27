@@ -1,8 +1,10 @@
-hiera_include("classes", [])
 Exec {
-  path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+  path        => '/usr/bin:/bin:/usr/sbin:/sbin',
+  environment => 'RUBYLIB=/opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0/',
+  logoutput   => true,
+  timeout     => 180,
 }
-
+hiera_include("classes", [])
 File { backup => false }
 
 schedule { "bidaily":
