@@ -3,11 +3,7 @@ class sabnzb {
   $http_port = hiera("sabnzb::config::http_port")
   $sickbeard_port = hiera("sickbeard::config::http_port")
 
-  package {[
-    "sabnzbdplus",
-    "sabnzbdplus-theme-iphone",
-    "sabnzbdplus-theme-plush"
-  ]:
+  package { 'sabnzbdplus':
     ensure => "latest",
     require => Class["unrar"],
   }
