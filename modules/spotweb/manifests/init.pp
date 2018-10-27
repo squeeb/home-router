@@ -5,12 +5,23 @@ class spotweb {
   $spotweb_db_pass = hiera("spotweb::config::spotweb_db_pass")
   $sysadmin_email_address = hiera("sysadmin::email_address")
 
+
+
+  exec { "install-spotweb":
+    command => "git clone https://github.com/spotweb/spotweb.git /usr/share/spotweb",
+    creates => "/usr/share/spotweb/README.md",
+    require => File["/usr/share/spotweb"],
+  }
+
   file { "/usr/share/spotweb":
     ensure => "directory",
     owner => "root",
     group => "www-data",
     mode => "0750",
-    require => Package["apache2"],
+    require => [
+      Exec['install-spotweb'],
+      Package["apache2"],
+    ]
   }
 
   file { "/usr/share/spotweb/cache":
@@ -18,12 +29,6 @@ class spotweb {
     owner => "www-data",
     group => "www-data",
     mode => "0770",
-    require => File["/usr/share/spotweb"],
-  }
-
-  exec { "install-spotweb":
-    command => "git clone https://github.com/spotweb/spotweb.git /usr/share/spotweb",
-    creates => "/usr/share/spotweb/README.md",
     require => File["/usr/share/spotweb"],
   }
 
