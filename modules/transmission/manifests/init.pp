@@ -36,7 +36,7 @@ class transmission {
     owner   => 'debian-transmission',
     group   => 'staff',
     mode    => '0770',
-    require => File['/home/debian-transmission/.config/transmission-deamon']
+    require => File['/home/debian-transmission/.config/transmission-daemon']
   }
 
   file {[
