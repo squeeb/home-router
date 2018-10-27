@@ -1,7 +1,7 @@
-class environment {
+class env {
   $environment_content = $operatingsystem ? {
-    /^(Debian|Ubuntu)$/ => template("environment/environment.ubuntu_defaults.erb", "environment/environment.erb"),
-    default             => template("environment/environment.erb"),
+    /^(Debian|Ubuntu)$/ => template("env/environment.ubuntu_defaults.erb", "env/environment.erb"),
+    default             => template("env/environment.erb"),
   }
 
   file { "/etc/environment":
@@ -14,7 +14,7 @@ class environment {
 
   file { "/usr/local/bin/puppet-up":
     ensure  => "file",
-    source  => "puppet:///modules/environment/puppet-up.sh",
+    source  => "puppet:///modules/env/puppet-up.sh",
     owner   => "root",
     group   => "root",
     mode    => "0755",
@@ -23,7 +23,7 @@ class environment {
 
   file { "/usr/local/bin/puppet-run":
     ensure  => "file",
-    content => template("environment/puppet-run.sh.erb"),
+    content => template("env/puppet-run.sh.erb"),
     owner   => "root",
     group   => "root",
     mode    => "0755",

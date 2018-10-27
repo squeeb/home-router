@@ -1,4 +1,4 @@
-class environment::profile {
+class env::profile {
 
   file { "/etc/profile.d/malkovich.sh":
     ensure => "absent",
@@ -10,6 +10,6 @@ class environment::profile {
     mode    => "0755",
     owner   => "root",
     group   => "root",
-    content => template("environment/prompt.sh.erb"),
+    content => template("env/prompt.sh.erb"),
   }
 }
