@@ -1,5 +1,5 @@
 class php::apache {
-  file { "/etc/php/apache2/php.ini":
+  file { "/etc/php/7.2/apache2/php.ini":
     ensure => "file",
     owner => "root",
     group => "www-data",
