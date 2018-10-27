@@ -9,7 +9,6 @@ class php {
     "php-ldap",
     "php-curl",
     "php-json",
-    "php-mcrypt",
     "libapache2-mod-php",
     "php-gmp"
   ]:
