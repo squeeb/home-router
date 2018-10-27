@@ -11,6 +11,7 @@ class sysctl {
   }
 
   exec { "sysctl-set":
+    path        => '/sbin',
     command     => "sysctl -p",
     refreshonly => true,
   }
