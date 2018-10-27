@@ -1,6 +1,5 @@
 class transmission {
-  $config = hiera("transmission")
-
+  $config = hiera('transmission')
   package { "transmission-daemon":
     ensure => "latest",
     require => User::System["debian-transmission"],
