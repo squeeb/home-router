@@ -27,6 +27,12 @@ apt::repos:
     repos: "multiverse"
     include_src: false
 
+transmission:
+  download_dir: "/data/torrents"
+  rpc-whitelist-enabled: false
+  config_dir: "/var/lib/transmission-daemon/info"
+  blocklist_url: "http://john.bitsurge.net/public/biglist.p2p.gz"
+
 sabnzb::config::run_as_user: "sabnzb"
 sabnzb::config::http_port: 9090
 sickbeard::config::http_port: 9092
