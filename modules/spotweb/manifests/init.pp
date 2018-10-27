@@ -10,7 +10,6 @@ class spotweb {
   exec { "install-spotweb":
     command => "git clone https://github.com/spotweb/spotweb.git /usr/share/spotweb",
     creates => "/usr/share/spotweb/README.md",
-    require => File["/usr/share/spotweb"],
   }
 
   file { "/usr/share/spotweb":
