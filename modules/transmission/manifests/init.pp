@@ -28,6 +28,18 @@ class transmission {
   }
 
   file {[
+    '/home/debian-transmission/.config/transmission-daemon/resume',
+    '/home/debian-transmission/.config/transmission-daemon/torrents',
+    '/home/debian-transmission/.config/transmission-daemon/blocklists',
+  ]:
+    ensure  => 'directory',
+    owner   => 'debian-transmission',
+    group   => 'staff',
+    mode    => '0770',
+    require => File['/home/debian-transmission/.config/transmission-deamon']
+  }
+
+  file {[
     $config["download_dir"],
     "${config['download_dir']}/incomplete"
   ]:
