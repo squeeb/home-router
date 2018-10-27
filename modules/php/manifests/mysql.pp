@@ -1,5 +1,5 @@
-class php5::mysql {
-  package { "php5-mysql":
+class php::mysql {
+  package { "php-mysql":
     ensure => "latest",
     require => Class["mysql::server"],
   }

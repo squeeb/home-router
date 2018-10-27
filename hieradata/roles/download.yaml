@@ -7,9 +7,9 @@ classes:
   - "spotweb"
   - "apache2"
   - "mysql::server"
-  - "php5"
-  - "php5::apache"
-  - "php5::mysql"
+  - "php"
+  - "php::apache"
+  - "php::mysql"
 
 apt::repos:
   "jcfp":
