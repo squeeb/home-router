@@ -30,7 +30,7 @@ apt::repos:
 transmission:
   download_dir: "/data/torrents"
   rpc-whitelist-enabled: false
-  config_dir: "/var/lib/transmission-daemon/info"
+  config_dir: "/home/debian-transmission/.config/transmission-daemon"
   blocklist_url: "http://john.bitsurge.net/public/biglist.p2p.gz"
 
 sabnzb::config::run_as_user: "sabnzb"
