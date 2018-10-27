@@ -2,7 +2,6 @@
 classes:
   - "transmission"
   - "sabnzb"
-  - "sickbeard"
   - "couchpotato"
   - "unrar"
   - "spotweb"
