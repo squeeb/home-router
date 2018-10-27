@@ -38,7 +38,7 @@ class spotweb {
     mode => "0644",
     source => "puppet:///modules/spotweb/apache/spotweb.conf",
     require => [
-      File["/etc/php/apache2/php.ini"],
+      File["/etc/php/7.2/apache2/php.ini"],
       Package[
         "apache2",
         "php"
