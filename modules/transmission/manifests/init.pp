@@ -51,8 +51,8 @@ class transmission {
     ],
   }
 
-  file { "${config['config-dir']}/settings.json":
-    mode => "0660",
+  file { '/home/debian-transmission/.config/transmission-daemon/settings.json':
+    mode => "0555",
     owner => "root",
     group => "debian-transmission",
     require => User::System["debian-transmission"],
