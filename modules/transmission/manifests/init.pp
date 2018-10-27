@@ -15,7 +15,6 @@ class transmission {
   }
 
   file {[
-    "/etc/transmission-daemon",
     "/home/debian-transmission",
     "/home/debian-transmission/.config",
     "/home/debian-transmission/.config/transmission-daemon",
@@ -23,20 +22,8 @@ class transmission {
     ensure => "directory",
     owner => "debian-transmission",
     group => "staff",
-    mode => "0570",
+    mode => "0770",
     require => Package["transmission-daemon"],
-  }
-
-  file {[
-    '/home/debian-transmission/.config/transmission-daemon/resume',
-    '/home/debian-transmission/.config/transmission-daemon/torrents',
-    '/home/debian-transmission/.config/transmission-daemon/blocklists',
-  ]:
-    ensure  => 'directory',
-    owner   => 'debian-transmission',
-    group   => 'staff',
-    mode    => '0770',
-    require => File['/home/debian-transmission/.config/transmission-daemon']
   }
 
   file {[
