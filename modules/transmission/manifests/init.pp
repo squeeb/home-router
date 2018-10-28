@@ -9,7 +9,7 @@ class transmission {
   file { "/home/debian-transmission/.config/transmission-daemon/settings.json":
     ensure => "file",
     owner => "root",
-    group => "debian-transmission",
+    group => "download",
     mode => "0640",
     content => template("transmission/settings.json.erb"),
   }
@@ -20,10 +20,22 @@ class transmission {
     "/home/debian-transmission/.config/transmission-daemon",
   ]:
     ensure => "directory",
-    owner => "debian-transmission",
-    group => "staff",
-    mode => "0770",
+    owner => "root",
+    group => "download",
+    mode => "0750",
     require => Package["transmission-daemon"],
+  }
+
+  file { [
+    "/home/debian-transmission/.config/transmission-daemon/resume",
+    "/home/debian-transmission/.config/transmission-daemon/blocklists",
+    "/home/debian-transmission/.config/transmission-daemon/torrents",
+    "/home/debian-transmission/.config/transmission-daemon/dht.dat",
+    "/home/debian-transmission/.config/transmission-daemon/stats.dat",
+  ]:
+    owner   => "debian-transmission",
+    group   => "download",
+    require => File['/home/debian-transmission/.config/transmission-daemon'],
   }
 
   file {[
