@@ -3,5 +3,5 @@ etckeeper*
 environments
 /puppet.conf
 *.iso
-.DS_store
+*.DS_store
 *.box

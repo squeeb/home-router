@@ -151,7 +151,7 @@ bind9::zones:
       - name: 'fileserver'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f66::12'
-      - name: 'mfc1'
+      - name: 'mfc'
         type: 'AAAA'
         value: '2001:8b0:7a51:2f66::4'
   'home.crigby.net':
