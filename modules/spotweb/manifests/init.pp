@@ -5,8 +5,6 @@ class spotweb {
   $spotweb_db_pass = hiera("spotweb::config::spotweb_db_pass")
   $sysadmin_email_address = hiera("sysadmin::email_address")
 
-
-
   exec { "install-spotweb":
     command => "git clone https://github.com/spotweb/spotweb.git /usr/share/spotweb",
     creates => "/usr/share/spotweb/README.md",

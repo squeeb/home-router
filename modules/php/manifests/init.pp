@@ -10,7 +10,9 @@ class php {
     "php-curl",
     "php-json",
     "libapache2-mod-php",
-    "php-gmp"
+    "php-gmp",
+    "php-mbstring",
+    "php-zip",
   ]:
     ensure => "latest",
   }
