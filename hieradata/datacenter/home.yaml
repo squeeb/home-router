@@ -6,8 +6,9 @@ resolv::options:
   - "single-request"
   - "single-request-reopen"
 resolv::resolvers:
-  - '2001:8b0:7a51:2f67::16'
-  - '192.168.64.16'
+  - '2001:8b0:7a51:2f67::2'
+  - '192.168.64.10'
+  - '1.1.1.1'
 resolv::search:
   - 'mgmt.home.crigby.net'
   - 'home.crigby.net'
