@@ -1,1 +1,3 @@
 ---
+sysctl::options:
+  vm.swappiness: 10
