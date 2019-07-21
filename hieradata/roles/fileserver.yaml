@@ -10,8 +10,16 @@ samba::config::workgroup: "SWC"
 samba::config::server_string: "%{::hostname}"
 samba::config::shares:
   store:
-    comment: "Movies, Music, Etc.."
+    comment: "General"
     path: "/data"
+    guest_ok: "no"
+    browseable: "yes"
+    create_mask: "0664"
+    directory_mask: "0775"
+    writeable: "yes"
+  media:
+    comment: "Movies, Music, Etc.."
+    path: "/data/media"
     guest_ok: "no"
     browseable: "yes"
     create_mask: "0664"
