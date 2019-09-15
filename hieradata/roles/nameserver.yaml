@@ -188,7 +188,7 @@ bind9::zones:
       - name: 'irc'
         type: 'CNAME'
         value: 'nora.mgmt.home.crigby.net.'
-  'parksq.home.crigby.net':
+  'parksq.crigby.net':
     type: 'master'
     ttl: 300
     soa:
