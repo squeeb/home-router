@@ -188,3 +188,16 @@ bind9::zones:
       - name: 'irc'
         type: 'CNAME'
         value: 'nora.mgmt.home.crigby.net.'
+  'parksq.home.crigby.net':
+    type: 'master'
+    ttl: 300
+    soa:
+      email: 'root.mgmt.home.crigby.net.'
+      refresh: 86400
+      retry: 3600
+      expire: 86400
+      nttl: 300
+    records:
+      - name: 'gns3'
+        type: 'A'
+        value: '172.23.6.28'
