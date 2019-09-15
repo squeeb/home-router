@@ -198,6 +198,9 @@ bind9::zones:
       expire: 86400
       nttl: 300
     records:
+      - name: '@'
+        type: 'NS'
+        value: 'ns1.mgmt.home.crigby.net.'
       - name: 'gns3'
         type: 'A'
         value: '172.23.6.28'
